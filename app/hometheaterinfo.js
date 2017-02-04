@@ -1,3 +1,5 @@
+import { purge, insert } from './persist/HomeTheaterInfo'
+
 export function importDvdLibrary(){
 	//var file_url = 'http://www.hometheaterinfo.com/download/dvd_csv.zip'
   var file_url = 'http://127.0.0.1/home_theater_infos'
@@ -36,16 +38,15 @@ export function importDvdLibrary(){
 			var stream
 
 			console.log('Extracted zipped files. Opening...')
+
+			console.log('Purging old db...')
+			purge()
+
 			for(var i = 0; i < zipEntries.length; i++){
 				if(zipEntries[i].name == 'dvd_csv.txt'){
 					csv.fromString(zip.readAsText(zipEntries[i]), { headers: true, quote:'"' })
 						 .on('data', function(data){
-								console.log('MOAR DATA!!')
-								console.log(data)
-								console.log(data.UPC)
-								//data.forEach(function(row){
-								//	console.log(row)
-								//})
+								insert(data)
 							})
 						 .on('end', function(){
 								console.log('done')
