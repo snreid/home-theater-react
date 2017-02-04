@@ -38,24 +38,18 @@ export function importDvdLibrary(){
 			console.log('Extracted zipped files. Opening...')
 			for(var i = 0; i < zipEntries.length; i++){
 				if(zipEntries[i].name == 'dvd_csv.txt'){
-					console.log('opened dvd_csv.txt')
-					console.log('Data type:')
-					//debugger
-					//csv.fromString(zip.readAsText(zipEntries[i]), { headers: true })
-					//	 .on('data', function(data){
-					//			console.log(data)
-					//		})
-					//	 .on('end', function(){
-					//			console.log(done)
-					//		})
-					data = zip.readAsText(zipEntries[i])
-					console.log(data.constructor)
-				}
-				else{
-					console.log('opened copyright.txt')
-					console.log('Data type:')
-					data = zip.readAsText(zipEntries[i])
-					console.log(data.constructor)
+					csv.fromString(zip.readAsText(zipEntries[i]), { headers: true, quote:'"' })
+						 .on('data', function(data){
+								console.log('MOAR DATA!!')
+								console.log(data)
+								console.log(data.UPC)
+								//data.forEach(function(row){
+								//	console.log(row)
+								//})
+							})
+						 .on('end', function(){
+								console.log('done')
+							})
 				}
 			}
 		})
