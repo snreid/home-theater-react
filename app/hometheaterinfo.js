@@ -1,4 +1,4 @@
-import { purge, insert } from './persist/HomeTheaterInfo'
+import { purge, insert, bulk_insert } from './persist/HomeTheaterInfo'
 
 export function importDvdLibrary(){
 	//var file_url = 'http://www.hometheaterinfo.com/download/dvd_csv.zip'
@@ -41,18 +41,22 @@ export function importDvdLibrary(){
 
 			console.log('Purging old db...')
 			purge()
+			console.log('Done purging.')
 
 			for(var i = 0; i < zipEntries.length; i++){
 				if(zipEntries[i].name == 'dvd_csv.txt'){
+					console.log('gathering records...')
+					var records = []
 					csv.fromString(zip.readAsText(zipEntries[i]), { headers: true, quote:'"' })
 						 .on('data', function(data){
-								insert(data)
+								records.push(data)
 							})
 						 .on('end', function(){
-								console.log('done')
+								console.log('writing ' + records.length + ' records...')
+								bulk_insert(records)
 							})
 				}
-			}
+			 }
 		})
 
 	})
