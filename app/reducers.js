@@ -1,7 +1,15 @@
 import { combineReducers } from 'redux'
-import { REFRESHED_LOCATIONS, SET_DISPLAY, Displays } from './actions'
+import { REFRESHED_LOCATIONS,
+         SET_DISPLAY,
+         REFRESHED_DVDS,
+         Displays } from './actions'
+const { LOCATIONS, DVDS } = Displays
 
-const { LOCATIONS } = Displays
+const initialState = {
+  display: DVDS,
+  locations: [],
+  dvds: []
+}
 
 function locations(state = [], action){
   switch (action.type) {
@@ -12,7 +20,16 @@ function locations(state = [], action){
   }
 }
 
-function display(state = LOCATIONS, action) {
+function dvds(state = [], action){
+  switch (action.type) {
+    case REFRESHED_DVDS:
+      return action.dvds
+    default:
+      return state
+  }
+}
+
+function display(state = DVDS, action) {
   switch (action.type) {
     case SET_DISPLAY:
       return action.display
@@ -23,6 +40,7 @@ function display(state = LOCATIONS, action) {
 
 const dvdApp = combineReducers({
   display,
+  dvds,
   locations
 })
 

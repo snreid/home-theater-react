@@ -1,12 +1,10 @@
-import { all_locations, add_location, destroy_location } from './persist/Location'
-
 /*
  * action types
  */
 
 export const SET_DISPLAY = 'SET_DISPLAY'
 export const REFRESHED_LOCATIONS = 'REFRESHED_LOCATIONS'
-
+export const REFRESHED_DVDS = 'REFRESHED_DVDS'
 
 /*
  * other constants
@@ -15,8 +13,10 @@ export const REFRESHED_LOCATIONS = 'REFRESHED_LOCATIONS'
 export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS' }
 
 /*
- * action creators
+ * LOCATION action creators
  */
+
+import { all_locations, add_location, destroy_location } from './persist/Location'
 
 export function refreshedLocations(locations){
   return {
@@ -45,6 +45,42 @@ export function deleteLocation(location_id){
   return function(dispatch){
     return destroy_location(location_id).then(function(location){
       dispatch(refreshLocations())
+    })
+  }
+}
+
+/*
+ * DVD action creators
+ */
+import { all_dvds, add_dvd, destroy_dvd } from './persist/Dvd'
+
+export function refreshedDvds(dvds){
+  return {
+    type: REFRESHED_DVDS,
+    dvds: dvds
+  }
+}
+
+export function refreshDvds(){
+  return function(dispatch){
+    return all_dvds().then(function(dvds){
+      dispatch(refreshedDvds(dvds))
+    })
+  }
+}
+
+export function adddvd(dvd){
+  return function(dispatch){
+    return add_dvd(dvd).then(function(dvd){
+      dispatch(refreshDvds())
+    })
+  }
+}
+
+export function deleteDvd(dvd_id){
+  return function(dispatch){
+    return destroy_dvd(dvd_id).then(function(dvd){
+      dispatch(refreshDvds())
     })
   }
 }

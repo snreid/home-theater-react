@@ -5,15 +5,16 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 const path = require('path')
 import dvdApp from './reducers'
-import { refreshLocations } from './actions'
+import { refreshLocations, refreshDvds } from './actions'
 import App from './components/App'
 
 let store = createStore(dvdApp, applyMiddleware(thunk))
+store.dispatch(refreshDvds())
 store.dispatch(refreshLocations())
 
 render(
   <Provider store={store}>
-    <App />
+    <App display={store.getState().display}/>
   </Provider>,
   document.getElementById('content')
 )

@@ -1,13 +1,16 @@
-import React from 'react'
-import AddLocation from '../containers/AddLocation'
-import VisibleLocations from '../containers/VisibleLocations'
+import React, { PropTypes } from 'react'
+import DisplayLocations from '../containers/DisplayLocations'
+import DisplayDvds from '../containers/DisplayDvds'
+import { Displays } from '../actions'
 
-const App = () => (
+const App = ({ display }) => (
   <div>
-    <h2>Locations</h2>
-    <AddLocation />
-    <VisibleLocations />
+    <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
+    <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
   </div>
 )
 
+App.propTypes = {
+  display: PropTypes.string.isRequired
+}
 export default App
