@@ -6,7 +6,7 @@ const Location = ({ shelf, row, stack, onDestroy }) => (
     <td>{row}</td>
     <td>{stack}</td>
     <td>
-      <button className='btn btn-default' onClick={onDestroy}>
+      <button className='btn btn-danger' onClick={onDestroy}>
         x
       </button>
     </td>

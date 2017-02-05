@@ -8,7 +8,7 @@ const LocationList = ({ locations, onDestroy }) => (
         <th>Shelf</th>
         <th>Row</th>
         <th>Stack</th>
-        <th>{'Actions' + locations.length}</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
