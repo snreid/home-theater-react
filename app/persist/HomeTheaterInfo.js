@@ -1,15 +1,18 @@
 var Datastore = require('nedb')
 
-var db = new Datastore({ filename: 'home_theater_infos.db', autoload: true })
+var db = new Datastore({ filename: 'home_theater_infos.db'})
+
+//db.loadDatabase()
 
 class HomeTheaterInfo {
   constructor(args) {
 		this._id = args._id
-    //this.Aspect = args.Aspect
-    //this.DVD_ReleaseDate = args.DVD_ReleaseDate
     this.DVD_Title = args.DVD_Title
+    this.DVD_ReleaseDate = args.DVD_ReleaseDate
     this.Genre = args.Genre
-    this.ID = args.ID
+    this.UPC = args.UPC
+    //this.Aspect = args.Aspect
+    //this.ID = args.ID
     //this.Price = args.Price
     //this.Rating = args.Rating
     //this.Released = args.Released
@@ -17,7 +20,6 @@ class HomeTheaterInfo {
     //this.Status = args.Status
     //this.Studio = args.Studio
     //this.Timestamp = args.Timestamp
-    this.UPC = args.UPC
     //this.Versions = args.Versions
     //this.Year = args.Year
   }

@@ -4,13 +4,16 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 const path = require('path')
-import { importDvdLibrary } from './hometheaterinfo'
+import dvdApp from './reducers'
+import { refreshLocations } from './actions'
+import App from './components/App'
+
+let store = createStore(dvdApp, applyMiddleware(thunk))
+store.dispatch(refreshLocations())
 
 render(
-  <div className="row">
-    <div className="col-md-12">
-      <button className="btn btn-default" onClick={importDvdLibrary} >Import</button>
-    </div>
-  </div>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('content')
 )
