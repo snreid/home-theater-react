@@ -69,7 +69,7 @@ export function refreshDvds(){
   }
 }
 
-export function adddvd(dvd){
+export function addDvd(dvd){
   return function(dispatch){
     return add_dvd(dvd).then(function(dvd){
       dispatch(refreshDvds())

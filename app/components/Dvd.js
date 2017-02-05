@@ -16,7 +16,9 @@ const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, onDestroy }) => (
 
 Dvd.propTypes = {
   DVD_Title: PropTypes.string.isRequired,
-  DVD_ReleaseDate: PropTypes.string.isOptional,
-  Genre: PropTypes.string.isOptional,
+  DVD_ReleaseDate: PropTypes.string,
+  Genre: PropTypes.string,
   onDestroy: PropTypes.func.isRequired
 }
+
+export default Dvd
