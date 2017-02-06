@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react'
-import DisplayLocations from '../containers/DisplayLocations'
-import DisplayDvds from '../containers/DisplayDvds'
+import VisibleDisplay from '../containers/VisibleDisplay'
 import { Displays } from '../actions'
 
 const App = ({ display }) => (
   <div>
-    <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
-    <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
+    <VisibleDisplay />
   </div>
 )
 

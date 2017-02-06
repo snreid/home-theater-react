@@ -84,3 +84,14 @@ export function deleteDvd(dvd_id){
     })
   }
 }
+
+/*
+ * DISPLAY action creators
+ */
+
+export function changeDisplay(display){
+  return {
+    type: SET_DISPLAY,
+    display: display
+  }
+}

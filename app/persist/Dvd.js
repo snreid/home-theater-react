@@ -12,14 +12,12 @@ class Dvd {
   }
 
   static find(){
-    console.log('finding dvds....')
     return new Promise(function(resolve, reject){
       db.find({}, function(err, docs) {
         if(err){
           reject(err)
         }
         else{
-          console.log('found dvds.')
           var dvds = docs.map(function(doc){
             return new Dvd(doc)
           })
