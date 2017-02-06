@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
 import VisibleDisplay from '../containers/VisibleDisplay'
-import { Displays } from '../actions'
+import VisibleNavigation from '../containers/VisibleNavigation'
 
 const App = ({ display }) => (
   <div>
+		<VisibleNavigation />
     <VisibleDisplay />
   </div>
 )
@@ -11,4 +12,5 @@ const App = ({ display }) => (
 App.propTypes = {
   display: PropTypes.string.isRequired
 }
+
 export default App
