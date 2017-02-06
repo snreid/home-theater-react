@@ -4,9 +4,11 @@ import DisplayDvds from '../containers/DisplayDvds'
 import { Displays } from '../actions'
 
 const Display = ({ display }) => (
-  <div>
-    <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
-    <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
+  <div id="page-content-wrapper">
+    <div className="container-fluid">
+      <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
+      <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
+    </div>
   </div>
 )
 

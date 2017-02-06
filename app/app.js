@@ -16,5 +16,5 @@ render(
   <Provider store={store}>
     <App display={store.getState().display}/>
   </Provider>,
-  document.getElementById('content')
+  document.getElementById('wrapper')
 )
