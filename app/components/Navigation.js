@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Displays } from '../actions'
 
 const Navigation = ({ display, changeToLocations, changeToDvds }) => (
-  <div id="sidebar-left" className="sidebar col-md-3">
+  <div id="sidebar-left" className="sidebar col-md-3 collapsed">
     <div className="list-group">
       <div className="list-group-item disabled">
         Home Theater

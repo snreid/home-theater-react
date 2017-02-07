@@ -4,15 +4,15 @@ import DisplayDvds from '../containers/DisplayDvds'
 import { Displays } from '../actions'
 
 const Display = ({ display }) => (
-  <div className="col-md-9" id="content">
+  <div className="col-md-12" id="content">
     <div className="container-fluid">
-      <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
-      <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
 			<div className="row">
 				<button className="btn btn-default" id="toggle-sidebar-left">
-					Toggle Navigation
+					<span className="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
 				</button>
 			</div>
+      <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
+      <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
     </div>
   </div>
 )
