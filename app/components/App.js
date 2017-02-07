@@ -3,7 +3,7 @@ import VisibleDisplay from '../containers/VisibleDisplay'
 import VisibleNavigation from '../containers/VisibleNavigation'
 
 const App = ({ display }) => (
-  <div>
+  <div className="row" id="row-main">
 		<VisibleNavigation />
     <VisibleDisplay />
   </div>
