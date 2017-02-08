@@ -1,6 +1,8 @@
+/*http://bootsnipp.com/snippets/featured/fancy-sidebar-navigation*/
 body {
     position: relative;
     overflow-x: hidden;
+    background-image: url('../concrete_seamless.png')
 }
 body,
 html { height: 100%;}

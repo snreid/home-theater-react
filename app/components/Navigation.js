@@ -9,12 +9,12 @@ const Navigation = ({ display, changeToLocations, changeToDvds }) => (
 					Home Theater
 				</a>
 			</li>
-			<li>
+			<li className="nav-closer" data-toggle="offcanvas">
 				<a href='#' onClick={changeToDvds}>
 					DVD Library
 				</a>
 			</li>
-			<li>
+			<li className="nav-closer" data-toggle="offcanvas">
 				<a href="#" onClick={changeToLocations}>
 					Locations
 				</a>
