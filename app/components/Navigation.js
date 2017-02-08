@@ -2,18 +2,24 @@ import React, { PropTypes } from 'react'
 import { Displays } from '../actions'
 
 const Navigation = ({ display, changeToLocations, changeToDvds }) => (
-  <div id="sidebar-left" className="sidebar col-md-3 collapsed">
-    <div className="list-group">
-      <div className="list-group-item disabled">
-        Home Theater
-      </div>
-			<a className="list-group-item" href='#' onClick={changeToDvds}>
-				DVD Library
-			</a>
-			<a className="list-group-item" href="#" onClick={changeToLocations}>
-				Locations
-			</a>
-    </div>
+  <div id="sidebar-wrapper" role="navigation" className="navbar navbar-inverse navbar-fixed-top">
+    <ul className="nav sidebar-nav">
+			<li className="sidebar-brand">
+				<a href="#">
+					Home Theater
+				</a>
+			</li>
+			<li>
+				<a href='#' onClick={changeToDvds}>
+					DVD Library
+				</a>
+			</li>
+			<li>
+				<a href="#" onClick={changeToLocations}>
+					Locations
+				</a>
+			</li>
+    </ul>
   </div>
 )
 

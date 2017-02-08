@@ -3,8 +3,9 @@ import VisibleDisplay from '../containers/VisibleDisplay'
 import VisibleNavigation from '../containers/VisibleNavigation'
 
 const App = ({ display }) => (
-  <div className="row" id="row-main">
-		<VisibleNavigation />
+  <div>
+    <div className="overlay"></div>
+    <VisibleNavigation />
     <VisibleDisplay />
   </div>
 )
