@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addDvd } from '../actions'
+
+const BrowserWindow = window.require("electron").remote.BrowserWindow
+const path = require('path')
 const $ = require('jquery')
 
 class AddDvdComponent extends React.Component{
@@ -10,8 +13,15 @@ class AddDvdComponent extends React.Component{
 
   componentDidMount(){
     console.log("this thing mounted")
-    $('#test-button').on('click', function(){
-      console.log('you clicked')
+    const newWindowBtn = document.getElementById('new-window')
+    newWindowBtn.addEventListener('click', function(event){
+      const modalPath = path.join('file://', __dirname, 'add-dvd.html')
+      console.log(modalPath)
+      let win = new BrowserWindow({width: 400, height: 320, "web-preferences":{"web-security": false} })
+      win.webContents.openDevTools()
+      win.on('close', function(){ win = null })
+      win.loadURL(modalPath)
+      win.show()
     })
   }
 
@@ -23,6 +33,7 @@ class AddDvdComponent extends React.Component{
     return (
       <div className='col-md-12'>
         <div className='row'>&nbsp;</div>
+        <button className='btn btn-default' id='new-window'>Add Dvd Modal</button>
         <div className='row'>
           <form className='form-inline' onSubmit={e => {
             e.preventDefault()
