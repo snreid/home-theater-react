@@ -13,9 +13,7 @@ class AddDvdComponent extends React.Component{
   }
 
   componentDidMount(){
-    console.log("this thing mounted")
-    const newWindowBtn = document.getElementById('new-window')
-    newWindowBtn.addEventListener('click', function(event){
+    $('#new-window').on('click', function(event){
       let win = new BrowserWindow({width: 400, height: 320 })
 
       // TODO: will this work on win32?
