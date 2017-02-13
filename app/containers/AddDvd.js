@@ -4,6 +4,7 @@ import { addDvd } from '../actions'
 
 const BrowserWindow = window.require("electron").remote.BrowserWindow
 const path = require('path')
+const url = require('url')
 const $ = require('jquery')
 
 class AddDvdComponent extends React.Component{
@@ -15,12 +16,19 @@ class AddDvdComponent extends React.Component{
     console.log("this thing mounted")
     const newWindowBtn = document.getElementById('new-window')
     newWindowBtn.addEventListener('click', function(event){
-      const modalPath = path.join('file://', __dirname, 'add-dvd.html')
-      console.log(modalPath)
-      let win = new BrowserWindow({width: 400, height: 320, "web-preferences":{"web-security": false} })
-      win.webContents.openDevTools()
+      let win = new BrowserWindow({width: 400, height: 320 })
+
+      // TODO: will this work on win32?
+      var file_loc = location.pathname.split('/')
+      file_loc.pop()
+      file_loc = (file_loc.join('/')) + '/app/containers/add-dvd.html'
+
+      win.loadURL(url.format({
+        pathname: file_loc,
+        protocol: 'file:',
+        slashes: true
+      }))
       win.on('close', function(){ win = null })
-      win.loadURL(modalPath)
       win.show()
     })
   }
