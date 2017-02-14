@@ -8,6 +8,7 @@ const DvdList = ({ dvds, onDestroy }) => (
         <th>Title</th>
         <th>Release Date</th>
         <th>Genre</th>
+        <th>Location</th>
         <th>Delete</th>
       </tr>
     </thead>
@@ -21,7 +22,7 @@ const DvdList = ({ dvds, onDestroy }) => (
         )
       }
       { dvds.length == 0 &&
-        <tr><td colSpan='4'>Loading DVD Library...</td></tr>
+        <tr><td colSpan='5'>Loading DVD Library...</td></tr>
       }
     </tbody>
   </table>
@@ -33,6 +34,7 @@ DvdList.propTypes = {
     DVD_Title: PropTypes.string.isRequired,
     DVD_ReleaseDate: PropTypes.string,
     Genre: PropTypes.string,
+    location_id: PropTypes.string,
   }).isRequired).isRequired,
   onDestroy: PropTypes.func.isRequired,
 }

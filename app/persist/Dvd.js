@@ -9,6 +9,7 @@ class Dvd {
     this.DVD_ReleaseDate = args.DVD_ReleaseDate
     this.Genre = args.Genre
     this.UPC = args.UPC
+    this.location_id = args.location_id || 'none'
   }
 
   static find(){

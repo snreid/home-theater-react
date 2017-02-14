@@ -54,9 +54,8 @@ class AddDvdComponent extends React.Component{
             if (!title.value.trim()) {
               return
             }
-            console.log(location_node.value)
-            var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value}
-            //this.props.dispatch(addDvd(params))
+            var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value}
+            this.props.dispatch(addDvd(params))
             title.value = ''
             date.value = ''
             genre.value = ''
