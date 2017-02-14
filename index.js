@@ -2,6 +2,11 @@ global.jQuery = global.$ = require('jQuery')
 require('electron-reload')(__dirname);
 
 const electron = require('electron')
+const ipc = electron.ipcMain
+ipc.on('asynchronous-message', function(event,arg){
+  console.log('received message: ' + arg)
+  event.sender.send('asynchronous-reply', 'pong')
+})
 // Module to control application life.
 const app = electron.app
 
