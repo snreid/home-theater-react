@@ -86,7 +86,7 @@ class AddDvdComponent extends React.Component{
                 {this.props.locations.map(function(location){
                    return(
                     <option key={location._id} value={location._id}>
-                      Shelf {location.shelf}, Row {location.row}, Stack {location.stack}
+                      {location.display_name}
                     </option>
                    )
                   }

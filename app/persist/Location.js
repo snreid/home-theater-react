@@ -8,6 +8,7 @@ class Location {
     this.shelf = args.shelf
     this.row = args.row
     this.stack = args.stack
+    this.display_name = `Shelf ${this.shelf}, Row ${this.row}, Stack ${this.stack}`
   }
 
   static find(){

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Dvd from './Dvd'
 
-const DvdList = ({ dvds, onDestroy }) => (
+const DvdList = ({ dvds, locations, onDestroy }) => (
   <table className='table table-striped'>
     <thead>
       <tr>
@@ -17,6 +17,7 @@ const DvdList = ({ dvds, onDestroy }) => (
           <Dvd
             key={dvd._id}
             {...dvd}
+            locations={locations}
             onDestroy={() => onDestroy(dvd._id)}
           />
         )

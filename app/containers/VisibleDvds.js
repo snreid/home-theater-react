@@ -4,7 +4,8 @@ import DvdList from '../components/DvdList'
 
 const mapStateToProps = (state) => {
   return {
-    dvds: state.dvds
+    dvds: state.dvds,
+    locations: state.locations
   }
 }
 
