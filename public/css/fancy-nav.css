@@ -2,7 +2,6 @@
 body {
     position: relative;
     overflow-x: hidden;
-    background-image: url('../concrete_seamless.png')
 }
 body,
 html { height: 100%;}

@@ -49,7 +49,7 @@ class AddDvdComponent extends React.Component{
       <div className='col-md-12'>
         <div className='row'>&nbsp;</div>
         <div className='row'>
-          <form className='form-inline' onSubmit={e => {
+          <form onSubmit={e => {
             e.preventDefault()
             if (!title.value.trim()) {
               return

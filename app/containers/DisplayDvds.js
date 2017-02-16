@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react'
 import VisibleDvds from './VisibleDvds'
-import AddDvd from './AddDvd'
 
 const DisplayDvds = ({ shouldDisplay }) => (
   shouldDisplay &&
   <div>
-    <h2>DVD Library</h2>
-    <AddDvd />
+    <button className='toggle-sidebar btn btn-default'>Add DVDs</button>
     <VisibleDvds />
   </div>
 )

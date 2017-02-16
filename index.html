@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./public/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./public/css/fancy-nav.css">
+    <link rel="stylesheet" href="./public/css/collapsing.css">
 
     <title>Home Theater</title>
   </head>
@@ -42,6 +43,11 @@
 			$('[data-toggle="offcanvas"]').click(function () {
 				$('#wrapper').toggleClass('toggled');
 			});
+
+      $('.toggle-sidebar').on('click', function(){
+        $("#sidebar-right").toggleClass("collapsed");
+        $("#content").toggleClass("col-md-12 col-md-9");
+      })
 
 		</script>
   </body>

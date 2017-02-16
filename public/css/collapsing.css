@@ -2,6 +2,7 @@
 @media (min-width: 992px) {
   #sidebar-left.collapsed {
     /* same width as sidebar */
+    display: block;
     margin-left: -25%;
   }
 }
@@ -9,6 +10,8 @@
 @media (min-width: 992px) {
   #sidebar-right.collapsed {
     /* same width as sidebar */
+    display: block;
+    padding-left: 100px;
     margin-right: -25%;
   }
 }

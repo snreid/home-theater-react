@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import DisplayLocations from '../containers/DisplayLocations'
 import DisplayDvds from '../containers/DisplayDvds'
+import Sidebar from './Sidebar'
 import { Displays } from '../actions'
 
 const Display = ({ display }) => (
@@ -11,9 +12,12 @@ const Display = ({ display }) => (
       <span className="hamb-bottom"></span>
     </button>
     <div className="container">
-			<div className="row">
-        <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
-        <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
+			<div className="row" id='main-row'>
+        <div className='col-md-12' id='content'>
+          <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
+          <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
+        </div>
+        <Sidebar />
 			</div>
     </div>
   </div>
