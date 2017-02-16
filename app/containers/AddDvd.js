@@ -2,42 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addDvd } from '../actions'
 
-//const BrowserWindow = window.require("electron").remote.BrowserWindow
 const path = require('path')
 const url = require('url')
 const $ = require('jquery')
 
-//const ipc = window.require('electron').ipcRenderer
-//ipc.on('asynchronous-message', function(event,arg){
-//  console.log('received message: ' + arg)
-//  event.sender.send('asynchronous-reply', 'pong')
-//})
 
 class AddDvdComponent extends React.Component{
   constructor(props){
     super(props)
   }
-
-//  componentDidMount(){
-//    $('#new-window').on('click', function(event){
-//      let win = new BrowserWindow({width: 400, height: 320 })
-//
-//      // TODO: will this work on win32?
-//      var file_loc = location.pathname.split('/')
-//      file_loc.pop()
-//      file_loc = (file_loc.join('/')) + '/app/containers/add-dvd.html'
-
-//      win.webContents.openDevTools()
-//      win.loadURL(url.format({
-//       pathname: file_loc,
-//        protocol: 'file:',
-//        slashes: true
-//      }))
-//      win.on('close', function(){ win = null })
-//      win.show()
-//    })
-//<button className='btn btn-default' id='new-window'>Add Dvd Modal</button>
-//  }
 
   render(){
     let title
