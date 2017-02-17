@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy, displayDvd }) => (
-  <tr>
+  <tr onClick={displayDvd}>
     <td>{DVD_Title}</td>
     <td>{DVD_ReleaseDate}</td>
     <td>{Genre}</td>
@@ -15,9 +15,6 @@ const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDest
     <td>
       <button className='btn btn-danger' onClick={onDestroy}>
         x
-      </button>
-      <button className='btn btn-primary' onClick={displayDvd}>
-        View
       </button>
     </td>
   </tr>

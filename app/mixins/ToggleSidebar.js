@@ -1,8 +1,4 @@
 const $ = require('jquery')
-var toggleSidebar = function(){
-  $("#sidebar-right").toggleClass("collapsed");
-  $("#content").toggleClass("col-md-12 col-md-9");
-}
 
 var openSidebar = function(){
   let sidebar = $('#sidebar-right')
@@ -23,4 +19,4 @@ var closeSidebar = function(){
   }
 }
 
-export { toggleSidebar, openSidebar, closeSidebar }
+export { openSidebar, closeSidebar }
