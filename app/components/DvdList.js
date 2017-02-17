@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import Dvd from './Dvd'
 
-const DvdList = ({ dvds, locations, onDestroy, displayDvd }) => (
-  <table className='table table-striped'>
+const DvdList = ({ dvds, locations, onDestroy, displayDvd, editDvd }) => (
+  <table className='table list-group'>
     <thead>
       <tr>
         <th>Title</th>
@@ -13,19 +13,20 @@ const DvdList = ({ dvds, locations, onDestroy, displayDvd }) => (
       </tr>
     </thead>
     <tbody>
-      { dvds.map(dvd=>
-          <Dvd
-            key={dvd._id}
-            {...dvd}
-            locations={locations}
-            onDestroy={() => onDestroy(dvd._id)}
-            displayDvd={() => displayDvd(dvd._id)}
-          />
-        )
-      }
-      { dvds.length == 0 &&
-        <tr><td colSpan='5'>Loading DVD Library...</td></tr>
-      }
+        { dvds.map(dvd=>
+            <Dvd
+              key={dvd._id}
+              {...dvd}
+              locations={locations}
+              onDestroy={() => onDestroy(dvd._id)}
+              displayDvd={() => displayDvd(dvd._id)}
+              editDvd={() => editDvd(dvd._id)}
+            />
+          )
+        }
+        { dvds.length == 0 &&
+          <tr><td colSpan='5'>Loading DVD Library...</td></tr>
+        }
     </tbody>
   </table>
 )
@@ -40,6 +41,7 @@ DvdList.propTypes = {
   }).isRequired).isRequired,
   onDestroy: PropTypes.func.isRequired,
   displayDvd: PropTypes.func.isRequired,
+  editDvd: PropTypes.func.isRequired,
 }
 
 export default DvdList

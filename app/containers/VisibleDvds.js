@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { deleteDvd, displayDvd } from '../actions'
+import { deleteDvd, displayDvd, editDvd } from '../actions'
 import { openSidebar } from '../mixins/ToggleSidebar'
 import DvdList from '../components/DvdList'
 
@@ -18,7 +18,11 @@ const mapDispatchToProps = (dispatch) => {
     displayDvd: (id) => {
       openSidebar()
       dispatch(displayDvd(id))
-    }
+    },
+    editDvd: (id) => {
+      openSidebar()
+      dispatch(editDvd(id))
+    },
   }
 }
 

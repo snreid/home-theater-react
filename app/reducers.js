@@ -2,12 +2,13 @@ import { combineReducers } from 'redux'
 import { REFRESHED_LOCATIONS,
          SET_DISPLAY,
          SET_SIDEBAR,
+         EDITING_DVD,
          DISPLAYING_DVD,
          REFRESHED_DVDS,
          Sidebars,
          Displays } from './actions'
 const { LOCATIONS, DVDS } = Displays
-const { ADD_DVD, SHOW_DVD } = Sidebars
+const { ADD_DVD, SHOW_DVD, EDIT_DVD } = Sidebars
 
 const initialState = {
   display: DVDS,
@@ -62,11 +63,21 @@ function displayingDvd(state = [], action) {
   }
 }
 
+function editingDvd(state = [], action) {
+  switch(action.type){
+    case EDITING_DVD:
+      return action.dvd
+    default:
+      return state
+  }
+}
+
 const dvdApp = combineReducers({
   display,
   sidebar,
   dvds,
   locations,
+  editingDvd,
   displayingDvd,
 })
 

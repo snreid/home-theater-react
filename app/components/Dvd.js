@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy, displayDvd }) => (
+const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy, displayDvd, editDvd }) => (
   <tr>
     <td onClick={displayDvd}>{DVD_Title}</td>
     <td onClick={displayDvd}>{DVD_ReleaseDate}</td>
@@ -16,6 +16,9 @@ const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDest
       <button className='btn btn-danger' onClick={onDestroy}>
         x
       </button>
+      <button className='btn btn-primary' onClick={editDvd}>
+        <span className='glyphicon glyphicon-pencil' aria-hidden='true'></span>
+      </button>
     </td>
   </tr>
 
@@ -27,7 +30,8 @@ Dvd.propTypes = {
   Genre: PropTypes.string,
   location_id: PropTypes.string,
   onDestroy: PropTypes.func.isRequired,
-  displayDvd: PropTypes.func.isRequired
+  displayDvd: PropTypes.func.isRequired,
+  editDvd: PropTypes.func.isRequired,
 }
 
 export default Dvd

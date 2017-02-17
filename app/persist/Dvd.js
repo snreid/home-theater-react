@@ -42,6 +42,19 @@ class Dvd {
     })
   }
 
+  static update(_id, args){
+    return new Promise(function(resolve, reject){
+      db.update({_id: _id}, {$set: args}, function(err, numReplaced){
+        if(err){
+          reject(err)
+        }
+        else{
+          resolve(numReplaced)
+        }
+      })
+    })
+  }
+
 	static destroy(_id){
     return new Promise(function(resolve, reject){
       db.remove({_id: _id}, function(err, numDeleted){
@@ -69,6 +82,7 @@ class Dvd {
     })
   }
 }
+
 var all_dvds = function(){
   return Dvd.find()
 }
@@ -86,4 +100,8 @@ var destroy_dvd = function(_id){
   return Dvd.destroy(_id)
 }
 
-export { all_dvds, add_dvd, find_dvd, destroy_dvd }
+var update_dvd = function(_id, args){
+  return Dvd.update(_id, args)
+}
+
+export { all_dvds, add_dvd, find_dvd, destroy_dvd, update_dvd }

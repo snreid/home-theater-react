@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import AddDvd from '../containers/AddDvd'
+import EditDvd from '../containers/EditDvd'
 import DvdDetails from '../containers/DvdDetails'
 import { Sidebars } from '../actions'
 import { closeSidebar } from '../mixins/ToggleSidebar'
@@ -13,6 +14,7 @@ const Sidebar = ({ displayingDvd, locations, sidebar }) => {
         </span>
         <AddDvd shouldDisplay={ sidebar == Sidebars.ADD_DVD }/>
         <DvdDetails dvd={displayingDvd} locations={locations} shouldDisplay={sidebar == Sidebars.SHOW_DVD} />
+        <EditDvd displayingDvd={displayingDvd} location={locations} shouldDisplay={sidebar == Sidebars.EDIT_DVD} />
       </div>
     </div>
   )
