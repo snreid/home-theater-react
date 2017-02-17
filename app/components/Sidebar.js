@@ -4,7 +4,7 @@ import DvdDetails from '../containers/DvdDetails'
 import { Sidebars } from '../actions'
 import { closeSidebar } from '../mixins/ToggleSidebar'
 
-const Sidebar = ({ displayingDvd, sidebar }) => {
+const Sidebar = ({ displayingDvd, locations, sidebar }) => {
   return (
     <div id='sidebar-right' className="sidebar collapsed col-md-3 ">
       <div className='well affix'>
@@ -12,7 +12,7 @@ const Sidebar = ({ displayingDvd, sidebar }) => {
           X
         </span>
         <AddDvd shouldDisplay={ sidebar == Sidebars.ADD_DVD }/>
-        <DvdDetails dvd={displayingDvd} shouldDisplay={sidebar == Sidebars.SHOW_DVD} />
+        <DvdDetails dvd={displayingDvd} locations={locations} shouldDisplay={sidebar == Sidebars.SHOW_DVD} />
       </div>
     </div>
   )
