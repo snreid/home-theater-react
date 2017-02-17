@@ -19,60 +19,61 @@ class AddDvdComponent extends React.Component{
     let location_node
 
     return (
-      <div className='col-md-12'>
-        <div className='row'>&nbsp;</div>
-        <div className='row'>
-          <form onSubmit={e => {
-            e.preventDefault()
-            if (!title.value.trim()) {
-              return
-            }
-            var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value}
-            this.props.dispatch(addDvd(params))
-            title.value = ''
-            date.value = ''
-            genre.value = ''
-          }}>
-            <div className='form-group'>
-              <label>Title: </label>
-              <input className='form-control' ref={node => {
-                title = node
-              }} />
-            </div>
-            <div className='form-group'>
-              <label>Release Date: </label>
-              <input className='form-control' ref={node => {
-                date = node
-              }} />
-            </div>
-            <div className='form-group'>
-              <label>Genre: </label>
-              <input className='form-control' ref={node => {
-                genre= node
-              }} />
-            </div>
-            <div className='form-group'>
-              <label>Location: </label>
-              <select className='form-control' ref={node => {
-                location_node= node
-              }}>
-                {this.props.locations.map(function(location){
-                   return(
-                    <option key={location._id} value={location._id}>
-                      {location.display_name}
-                    </option>
-                   )
-                  }
-                )}
-              </select>
-            </div>
-            <button className="btn btn-success" type="submit">
-              Add DVD
-            </button>
-          </form>
+      this.props.shouldDisplay &&
+        <div className='col-md-12'>
           <div className='row'>&nbsp;</div>
+          <div className='row'>
+            <form onSubmit={e => {
+              e.preventDefault()
+              if (!title.value.trim()) {
+                return
+              }
+              var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value}
+              this.props.dispatch(addDvd(params))
+              title.value = ''
+              date.value = ''
+              genre.value = ''
+            }}>
+              <div className='form-group'>
+                <label>Title: </label>
+                <input className='form-control' ref={node => {
+                  title = node
+                }} />
+              </div>
+              <div className='form-group'>
+                <label>Release Date: </label>
+                <input className='form-control' ref={node => {
+                  date = node
+                }} />
+              </div>
+              <div className='form-group'>
+                <label>Genre: </label>
+                <input className='form-control' ref={node => {
+                  genre= node
+                }} />
+              </div>
+              <div className='form-group'>
+                <label>Location: </label>
+                <select className='form-control' ref={node => {
+                  location_node= node
+                }}>
+                  {this.props.locations.map(function(location){
+                    return(
+                      <option key={location._id} value={location._id}>
+                        {location.display_name}
+                      </option>
+                    )
+                    }
+                  )}
+                </select>
+              </div>
+              <button className="btn btn-success" type="submit">
+                Add DVD
+              </button>
+            </form>
+            <div className='row'>&nbsp;</div>
+          </div>
         </div>
-      </div>
     )
   }
 }

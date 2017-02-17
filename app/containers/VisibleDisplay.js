@@ -3,7 +3,8 @@ import Display from '../components/Display'
 
 const mapStateToProps = (state) => {
   return {
-    display: state.display
+    display: state.display,
+    sidebar: state.sidebar
   }
 }
 

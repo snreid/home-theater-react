@@ -3,6 +3,7 @@
  */
 
 export const SET_DISPLAY = 'SET_DISPLAY'
+export const SET_SIDEBAR = 'SET_SIDEBAR'
 export const REFRESHED_LOCATIONS = 'REFRESHED_LOCATIONS'
 export const REFRESHED_DVDS = 'REFRESHED_DVDS'
 
@@ -11,6 +12,7 @@ export const REFRESHED_DVDS = 'REFRESHED_DVDS'
  */
 
 export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS' }
+export const Sidebars = {ADD_DVD: 'ADD_DVD', SHOW_DVD: 'SHOW_DVD'}
 
 /*
  * LOCATION action creators
@@ -92,6 +94,18 @@ export function deleteDvd(dvd_id){
 export function changeDisplay(display){
   return {
     type: SET_DISPLAY,
+    display: display
+  }
+}
+
+
+/*
+ * SIDEBAR action creators
+ */
+
+export function changeSidebar(display){
+  return {
+    type: SET_SIDEBAR,
     display: display
   }
 }

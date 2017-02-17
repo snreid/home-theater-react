@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import DisplayLocations from '../containers/DisplayLocations'
 import DisplayDvds from '../containers/DisplayDvds'
-import Sidebar from './Sidebar'
+import VisibleSidebar from '../containers/VisibleSidebar'
 import { Displays } from '../actions'
 
 const Display = ({ display }) => (
@@ -17,7 +17,7 @@ const Display = ({ display }) => (
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
           <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
         </div>
-        <Sidebar />
+        <VisibleSidebar />
 			</div>
     </div>
   </div>
