@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 
 const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy, displayDvd }) => (
-  <tr onClick={displayDvd}>
-    <td>{DVD_Title}</td>
-    <td>{DVD_ReleaseDate}</td>
-    <td>{Genre}</td>
-    <td>{locations.map(function(location){
+  <tr>
+    <td onClick={displayDvd}>{DVD_Title}</td>
+    <td onClick={displayDvd}>{DVD_ReleaseDate}</td>
+    <td onClick={displayDvd}>{Genre}</td>
+    <td onClick={displayDvd}>{locations.map(function(location){
             if(location._id == location_id){
               return location.display_name
             }
