@@ -56,7 +56,6 @@ function sidebar(state = ADD_DVD, action) {
 function displayingDvd(state = [], action) {
   switch(action.type){
     case DISPLAYING_DVD:
-      console.log(action.dvd)
       return action.dvd
     default:
       return state
