@@ -4,7 +4,7 @@ import DisplayDvds from '../containers/DisplayDvds'
 import VisibleSidebar from '../containers/VisibleSidebar'
 import { Displays } from '../actions'
 
-const Display = ({ display }) => (
+const Display = ({ display, addDvd }) => (
   <div id="page-content-wrapper">
     <button className="hamburger is-closed" type="button" data-toggle="offcanvas">
       <span className="hamb-top"></span>
@@ -15,7 +15,7 @@ const Display = ({ display }) => (
 			<div className="row" id='main-row'>
         <div className='col-md-12' id='content'>
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
-          <DisplayDvds shouldDisplay={ display == Displays.DVDS } />
+          <DisplayDvds shouldDisplay={ display == Displays.DVDS } addDvd={() => addDvd()} />
         </div>
         <VisibleSidebar />
 			</div>
@@ -25,6 +25,7 @@ const Display = ({ display }) => (
 
 Display.propTypes = {
   display: PropTypes.string.isRequired,
+  addDvd: PropTypes.func.isRequired,
 }
 
 export default Display

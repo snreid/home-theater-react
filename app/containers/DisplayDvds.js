@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react'
 import VisibleDvds from './VisibleDvds'
-import { toggleSidebar } from '../mixins/ToggleSidebar'
 
-const DisplayDvds = ({ shouldDisplay }) => (
+const DisplayDvds = ({ shouldDisplay, addDvd }) => (
   shouldDisplay &&
   <div>
-    <button className='btn btn-default' onClick={toggleSidebar}>
+    <button className='btn btn-default' onClick={addDvd}>
       Add DVDs
     </button>
     <VisibleDvds />
