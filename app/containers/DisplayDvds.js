@@ -5,7 +5,7 @@ import { toggleSidebar } from '../mixins/ToggleSidebar'
 const DisplayDvds = ({ shouldDisplay }) => (
   shouldDisplay &&
   <div>
-    <button className='toggle-sidebar btn btn-default' onClick={toggleSidebar}>
+    <button className='btn btn-default' onClick={toggleSidebar}>
       Add DVDs
     </button>
     <VisibleDvds />
