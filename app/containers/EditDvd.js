@@ -11,7 +11,6 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
     return (
       shouldDisplay &&
         <div className='col-md-12'>
-          <h2>Editing Dvd</h2>
           <div className='row'>&nbsp;</div>
           <div className='row'>
             <form onSubmit={e => {
