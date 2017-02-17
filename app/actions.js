@@ -4,6 +4,7 @@
 
 export const SET_DISPLAY = 'SET_DISPLAY'
 export const SET_SIDEBAR = 'SET_SIDEBAR'
+export const DISPLAYING_DVD = 'DISPLAYING_DVD'
 export const REFRESHED_LOCATIONS = 'REFRESHED_LOCATIONS'
 export const REFRESHED_DVDS = 'REFRESHED_DVDS'
 
@@ -54,12 +55,19 @@ export function deleteLocation(location_id){
 /*
  * DVD action creators
  */
-import { all_dvds, add_dvd, destroy_dvd } from './persist/Dvd'
+import { all_dvds, add_dvd, find_dvd, destroy_dvd } from './persist/Dvd'
 
 export function refreshedDvds(dvds){
   return {
     type: REFRESHED_DVDS,
     dvds: dvds
+  }
+}
+
+export function displayingDvd(dvd){
+  return {
+    type: DISPLAYING_DVD,
+    dvd: dvd
   }
 }
 
@@ -87,6 +95,16 @@ export function deleteDvd(dvd_id){
   }
 }
 
+export function displayDvd(dvd_id){
+  return function(dispatch){
+    return find_dvd(dvd_id).then(function(dvd){
+      dispatch(displayingDvd(dvd))
+      dispatch(changeSidebar(Sidebars.SHOW_DVD))
+    })
+  }
+}
+
+
 /*
  * DISPLAY action creators
  */
@@ -103,9 +121,9 @@ export function changeDisplay(display){
  * SIDEBAR action creators
  */
 
-export function changeSidebar(display){
+export function changeSidebar(sidebar){
   return {
     type: SET_SIDEBAR,
-    display: display
+    sidebar: sidebar
   }
 }

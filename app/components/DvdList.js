@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Dvd from './Dvd'
 
-const DvdList = ({ dvds, locations, onDestroy }) => (
+const DvdList = ({ dvds, locations, onDestroy, displayDvd }) => (
   <table className='table table-striped'>
     <thead>
       <tr>
@@ -19,6 +19,7 @@ const DvdList = ({ dvds, locations, onDestroy }) => (
             {...dvd}
             locations={locations}
             onDestroy={() => onDestroy(dvd._id)}
+            displayDvd={() => displayDvd(dvd._id)}
           />
         )
       }
@@ -38,6 +39,7 @@ DvdList.propTypes = {
     location_id: PropTypes.string,
   }).isRequired).isRequired,
   onDestroy: PropTypes.func.isRequired,
+  displayDvd: PropTypes.func.isRequired,
 }
 
 export default DvdList

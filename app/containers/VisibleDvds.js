@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { deleteDvd } from '../actions'
+import { deleteDvd, displayDvd } from '../actions'
 import DvdList from '../components/DvdList'
 
 const mapStateToProps = (state) => {
@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onDestroy: (id) => {
       dispatch(deleteDvd(id))
+    },
+    displayDvd: (id) => {
+      dispatch(displayDvd(id))
     }
   }
 }

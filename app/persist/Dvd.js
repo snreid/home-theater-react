@@ -28,6 +28,20 @@ class Dvd {
     })
   }
 
+  static findOne(args){
+    return new Promise(function(resolve, reject){
+      db.findOne(args, function(err, doc) {
+        if(err){
+          reject(err)
+        }
+        else{
+          var dvd = new Dvd(doc)
+          resolve(dvd)
+        }
+      })
+    })
+  }
+
 	static destroy(_id){
     return new Promise(function(resolve, reject){
       db.remove({_id: _id}, function(err, numDeleted){
@@ -59,6 +73,10 @@ var all_dvds = function(){
   return Dvd.find()
 }
 
+var find_dvd = function(id){
+  return Dvd.findOne({_id: id})
+}
+
 var add_dvd = function(dvd){
   var new_dvd = new Dvd(dvd)
   return new_dvd.insert()
@@ -68,4 +86,4 @@ var destroy_dvd = function(_id){
   return Dvd.destroy(_id)
 }
 
-export { all_dvds, add_dvd, destroy_dvd }
+export { all_dvds, add_dvd, find_dvd, destroy_dvd }

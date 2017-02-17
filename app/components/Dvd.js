@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy }) => (
+const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy, displayDvd }) => (
   <tr>
     <td>{DVD_Title}</td>
     <td>{DVD_ReleaseDate}</td>
@@ -16,6 +16,9 @@ const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDest
       <button className='btn btn-danger' onClick={onDestroy}>
         x
       </button>
+      <button className='btn btn-primary' onClick={displayDvd}>
+        View
+      </button>
     </td>
   </tr>
 
@@ -26,7 +29,8 @@ Dvd.propTypes = {
   DVD_ReleaseDate: PropTypes.string,
   Genre: PropTypes.string,
   location_id: PropTypes.string,
-  onDestroy: PropTypes.func.isRequired
+  onDestroy: PropTypes.func.isRequired,
+  displayDvd: PropTypes.func.isRequired
 }
 
 export default Dvd
