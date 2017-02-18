@@ -4,7 +4,7 @@ import DisplayDvds from '../containers/DisplayDvds'
 import VisibleSidebar from '../containers/VisibleSidebar'
 import { Displays } from '../actions'
 
-const Display = ({ display, addDvd }) => (
+const Display = ({ display, addDvd, openQuickScan }) => (
   <div id="page-content-wrapper">
     <button className="hamburger is-closed" type="button" data-toggle="offcanvas">
       <span className="hamb-top"></span>
@@ -15,7 +15,7 @@ const Display = ({ display, addDvd }) => (
 			<div className="row" id='main-row'>
         <div className='col-md-12' id='content'>
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
-          <DisplayDvds shouldDisplay={ display == Displays.DVDS } addDvd={() => addDvd()} />
+          <DisplayDvds shouldDisplay={ display == Displays.DVDS } addDvd={() => addDvd()} openQuickScan={() => openQuickScan()} />
         </div>
         <VisibleSidebar />
 			</div>
@@ -26,6 +26,7 @@ const Display = ({ display, addDvd }) => (
 Display.propTypes = {
   display: PropTypes.string.isRequired,
   addDvd: PropTypes.func.isRequired,
+  openQuickScan: PropTypes.func.isRequired,
 }
 
 export default Display

@@ -1,6 +1,6 @@
 var Datastore = require('nedb')
 
-var db = new Datastore({ filename: 'home_theater_infos.db'})
+var db = new Datastore({ filename: 'home_theater_infos.db', autoload: true})
 
 //db.loadDatabase()
 
@@ -35,6 +35,23 @@ class HomeTheaterInfo {
             return new HomeTheaterInfo(doc)
           })
           resolve(infos)
+        }
+      })
+    })
+  }
+
+  static findOne(args){
+    return new Promise(function(resolve, reject){
+      db.findOne(args, function(err, doc) {
+        if(err){
+          reject(err)
+        }
+        else{
+          let dvd
+          if(doc){
+            dvd = new HomeTheaterInfo(doc)
+          }
+          resolve(dvd)
         }
       })
     })
@@ -78,4 +95,8 @@ var bulk_insert = function(args){
 	})
 }
 
-export { purge, insert, bulk_insert, find_all }
+var find_by_upc = function(upc){
+  return HomeTheaterInfo.findOne({UPC: upc})
+}
+
+export { purge, insert, bulk_insert, find_all, find_by_upc }

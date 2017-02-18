@@ -14,8 +14,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addDvd: () => {
-      openSidebar()
       dispatch(changeSidebar(Sidebars.ADD_DVD))
+      openSidebar()
+    },
+    openQuickScan: () => {
+      dispatch(changeSidebar(Sidebars.QUICK_SCAN))
+      openSidebar()
     }
   }
 }

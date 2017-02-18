@@ -6,6 +6,7 @@ export const SET_DISPLAY = 'SET_DISPLAY'
 export const SET_SIDEBAR = 'SET_SIDEBAR'
 export const DISPLAYING_DVD = 'DISPLAYING_DVD'
 export const EDITING_DVD = 'EDITING_DVD'
+export const QUICK_SCANNING = 'QUICK_SCANNING'
 export const REFRESHED_LOCATIONS = 'REFRESHED_LOCATIONS'
 export const REFRESHED_DVDS = 'REFRESHED_DVDS'
 
@@ -14,7 +15,12 @@ export const REFRESHED_DVDS = 'REFRESHED_DVDS'
  */
 
 export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS' }
-export const Sidebars = {ADD_DVD: 'ADD_DVD', SHOW_DVD: 'SHOW_DVD', EDIT_DVD: 'EDIT_DVD'}
+export const Sidebars = {
+                          ADD_DVD: 'ADD_DVD',
+                          SHOW_DVD: 'SHOW_DVD',
+                          EDIT_DVD: 'EDIT_DVD',
+                          QUICK_SCAN: 'QUICK_SCAN',
+                        }
 
 /*
  * LOCATION action creators
@@ -123,6 +129,27 @@ export function editDvd(dvd_id){
   }
 }
 
+
+/*
+ * HomeTheaterInfo action creators
+ */
+
+import { find_by_upc } from './persist/HomeTheaterInfo'
+
+export function addDvdFromHomeTheaterInfo(params){
+  return function(dispatch){
+    return find_by_upc(params.UPC).then(function(dvd){
+      if(dvd){
+        var new_dvd = Object.assign({location_id: params.location_id}, dvd)
+        delete new_dvd['_id']
+        dispatch(addDvd(new_dvd))
+      }
+      else{
+        console.log('dvd not found')
+      }
+    })
+  }
+}
 
 /*
  * DISPLAY action creators

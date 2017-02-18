@@ -16,12 +16,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(deleteDvd(id))
     },
     displayDvd: (id) => {
-      openSidebar()
       dispatch(displayDvd(id))
+      openSidebar()
     },
     editDvd: (id) => {
-      openSidebar()
       dispatch(editDvd(id))
+      openSidebar()
     },
   }
 }
