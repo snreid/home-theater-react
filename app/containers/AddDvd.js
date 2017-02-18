@@ -14,6 +14,7 @@ class AddDvdComponent extends React.Component{
 
   render(){
     let title
+    let notes
     let date
     let genre
     let location_node
@@ -28,11 +29,12 @@ class AddDvdComponent extends React.Component{
               if (!title.value.trim()) {
                 return
               }
-              var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value}
+              var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value, notes: notes.value}
               this.props.dispatch(addDvd(params))
               title.value = ''
               date.value = ''
               genre.value = ''
+              notes.value = ''
             }}>
               <div className='form-group'>
                 <label>Title: </label>
@@ -66,6 +68,12 @@ class AddDvdComponent extends React.Component{
                     }
                   )}
                 </select>
+                <div className='form-group'>
+                  <label>Notes: </label>
+                  <textarea className='form-control' ref={node => {
+                    notes = node
+                  }} />
+                </div>
               </div>
               <button className="btn btn-success" type="submit">
                 Add DVD

@@ -6,6 +6,7 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
     let title
     let date
     let genre
+    let notes
     let location_node
 
     return (
@@ -18,7 +19,7 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
               if (!title.value.trim()) {
                 return
               }
-              var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value}
+              var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value, notes: notes.value}
               dispatch(updateDvd(displayingDvd._id, params))
             }}>
               <div className='form-group'>
@@ -65,6 +66,15 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
                     }
                   )}
                 </select>
+                <div className='form-group'>
+                  <label>Notes: </label>
+                  <textarea className='form-control'
+                            defaultValue={displayingDvd.notes}
+                            ref={node => {
+                              notes = node
+                            }}
+                  />
+                </div>
               </div>
               <button className="btn btn-success" type="submit">
                 Update DVD

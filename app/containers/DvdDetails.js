@@ -19,6 +19,9 @@ const DvdDetails = ({ dvd, locations, shouldDisplay }) =>(
         <li className='list-group-item'>
           <strong>Release Date:</strong> {dvd.DVD_ReleaseDate}
         </li>
+        <li className='list-group-item'>
+          <strong>Notes:</strong> {dvd.notes}
+        </li>
       </ul>
     </div>
 )

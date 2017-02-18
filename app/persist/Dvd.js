@@ -10,6 +10,7 @@ class Dvd {
     this.Genre = args.Genre
     this.UPC = args.UPC
     this.location_id = args.location_id || 'none'
+    this.notes = args.notes
   }
 
   static find(){
