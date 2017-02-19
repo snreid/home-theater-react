@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 import DisplayLocations from '../containers/DisplayLocations'
 import DisplayDvds from '../containers/DisplayDvds'
 import VisibleSidebar from '../containers/VisibleSidebar'
+import VisibleAlerts from '../containers/VisibleAlerts'
 import { Displays } from '../actions'
 
 const Display = ({ display, addDvd, openQuickScan }) => (
@@ -12,6 +13,7 @@ const Display = ({ display, addDvd, openQuickScan }) => (
       <span className="hamb-bottom"></span>
     </button>
     <div className="container">
+      <VisibleAlerts />
 			<div className="row" id='main-row'>
         <div className='col-md-12' id='content'>
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />

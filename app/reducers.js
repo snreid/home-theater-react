@@ -5,6 +5,8 @@ import { REFRESHED_LOCATIONS,
          EDITING_DVD,
          DISPLAYING_DVD,
          REFRESHED_DVDS,
+         ADD_ALERT,
+         REMOVE_ALERT,
          Sidebars,
          Displays } from './actions'
 const { LOCATIONS, DVDS } = Displays
@@ -15,7 +17,8 @@ const initialState = {
   sidebar: ADD_DVD,
   displayingDvd: [],
   locations: [],
-  dvds: []
+  dvds: [],
+  alerts: [],
 }
 
 function locations(state = [], action){
@@ -72,6 +75,20 @@ function editingDvd(state = [], action) {
   }
 }
 
+function alerts(state = [], action) {
+  switch(action.type){
+    case ADD_ALERT:
+      return [
+        ...state,
+        action.alert
+      ]
+    case REMOVE_ALERT:
+      return state.filter(alert => alert.id != action.alert_id)
+    default:
+      return state
+  }
+}
+
 const dvdApp = combineReducers({
   display,
   sidebar,
@@ -79,6 +96,7 @@ const dvdApp = combineReducers({
   locations,
   editingDvd,
   displayingDvd,
+  alerts,
 })
 
 export default dvdApp

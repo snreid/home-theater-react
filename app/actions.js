@@ -9,6 +9,8 @@ export const EDITING_DVD = 'EDITING_DVD'
 export const QUICK_SCANNING = 'QUICK_SCANNING'
 export const REFRESHED_LOCATIONS = 'REFRESHED_LOCATIONS'
 export const REFRESHED_DVDS = 'REFRESHED_DVDS'
+export const ADD_ALERT = 'ADD_ALERT'
+export const REMOVE_ALERT = 'REMOVE_ALERT'
 
 /*
  * other constants
@@ -145,7 +147,7 @@ export function addDvdFromHomeTheaterInfo(params){
         dispatch(addDvd(new_dvd))
       }
       else{
-        console.log('dvd not found')
+        dispatch(addFailureAlert(`DVD not found for UPC: ${params.UPC}`))
       }
     })
   }
@@ -172,4 +174,34 @@ export function changeSidebar(sidebar){
     type: SET_SIDEBAR,
     sidebar: sidebar
   }
+}
+
+/*
+ * ALERTS action creators
+ */
+
+let nextAlertId = 0
+export function addFailureAlert(message){
+  return{
+    type: ADD_ALERT,
+    alert: createAlert(message, 'danger')
+  }
+}
+
+export function addSuccessAlert(message){
+  return{
+    type: REMOVE_ALERT,
+    alert: createAlert(message, 'success')
+  }
+}
+
+export function removeAlert(alert_id){
+  return{
+    type: REMOVE_ALERT,
+    alert_id: alert_id
+  }
+}
+
+function createAlert(message, level){
+  return { message: message, level: level, id: (nextAlertId++).toString() }
 }
