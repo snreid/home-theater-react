@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { Displays } from '../actions'
+import { importDvdLibrary } from '../hometheaterinfo'
 
 const Navigation = ({ display, changeToLocations, changeToDvds }) => (
   <div id="sidebar-wrapper" role="navigation" className="navbar navbar-inverse navbar-fixed-top">
@@ -17,6 +18,11 @@ const Navigation = ({ display, changeToLocations, changeToDvds }) => (
 			<li className="nav-closer" data-toggle="offcanvas">
 				<a href="#" onClick={changeToLocations}>
 					Locations
+				</a>
+			</li>
+			<li className="nav-closer" data-toggle="offcanvas">
+				<a href="#" onClick={importDvdLibrary}>
+					Import Home Theater Info
 				</a>
 			</li>
     </ul>

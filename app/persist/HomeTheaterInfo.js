@@ -1,3 +1,5 @@
+const { dialog } = window.require('electron').remote
+
 var Datastore = require('nedb')
 
 var db = new Datastore({ filename: 'home_theater_infos.db', autoload: true})
@@ -92,6 +94,7 @@ var bulk_insert = function(args){
 		console.log(newDocs)
 		console.log('Compacting datafile...')
 		db.persistence.compactDatafile()
+    dialog.showMessageBox({type: 'info', message:"Import complete"})
 	})
 }
 
