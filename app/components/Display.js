@@ -12,7 +12,11 @@ const Display = ({ display, addDvd, openQuickScan }) => (
       <span className="hamb-middle"></span>
       <span className="hamb-bottom"></span>
     </button>
-    <div className="container">
+    <div className="container" id='main-container'>
+      <nav id='main-nav' className='navbar navbar-default navbar-fixed-top'>
+        <div className='container'>
+        </div>
+      </nav>
       <VisibleAlerts />
 			<div className="row" id='main-row'>
         <div className='col-md-12' id='content'>
