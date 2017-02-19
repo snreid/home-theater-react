@@ -92,6 +92,7 @@ export function addDvd(dvd){
   return function(dispatch){
     return add_dvd(dvd).then(function(dvd){
       dispatch(refreshDvds())
+      dispatch(addSuccessAlert(`Added "${dvd.DVD_Title}" to library`))
     })
   }
 }
@@ -100,6 +101,7 @@ export function deleteDvd(dvd_id){
   return function(dispatch){
     return destroy_dvd(dvd_id).then(function(dvd){
       dispatch(refreshDvds())
+      dispatch(addSuccessAlert('Removed from library'))
     })
   }
 }
@@ -109,6 +111,7 @@ export function updateDvd(dvd_id, params){
     return update_dvd(dvd_id, params).then(function(dvd){
       dispatch(refreshDvds())
       dispatch(displayDvd(dvd_id))
+      dispatch(addSuccessAlert(`"${params.DVD_Title}" successfully updated`))
     })
   }
 }
@@ -145,7 +148,6 @@ export function addDvdFromHomeTheaterInfo(params){
         var new_dvd = Object.assign({location_id: params.location_id}, dvd)
         delete new_dvd['_id']
         dispatch(addDvd(new_dvd))
-        dispatch(addSuccessAlert(`Added "${new_dvd.DVD_Title}" to library`))
       }
       else{
         dispatch(addFailureAlert(`DVD not found for UPC: ${params.UPC}`))
