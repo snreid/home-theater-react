@@ -17,9 +17,9 @@ const Display = ({ display, addDvd, openQuickScan }) => (
         <div className='container'>
         </div>
       </nav>
-      <VisibleAlerts />
 			<div className="row" id='main-row'>
         <div className='col-md-12' id='content'>
+          <VisibleAlerts />
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
           <DisplayDvds shouldDisplay={ display == Displays.DVDS } addDvd={() => addDvd()} openQuickScan={() => openQuickScan()} />
         </div>
