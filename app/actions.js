@@ -145,6 +145,7 @@ export function addDvdFromHomeTheaterInfo(params){
         var new_dvd = Object.assign({location_id: params.location_id}, dvd)
         delete new_dvd['_id']
         dispatch(addDvd(new_dvd))
+        dispatch(addSuccessAlert(`Added "${new_dvd.DVD_Title}" to library`))
       }
       else{
         dispatch(addFailureAlert(`DVD not found for UPC: ${params.UPC}`))
@@ -180,7 +181,6 @@ export function changeSidebar(sidebar){
  * ALERTS action creators
  */
 
-let nextAlertId = 0
 export function addFailureAlert(message){
   return{
     type: ADD_ALERT,
@@ -190,7 +190,7 @@ export function addFailureAlert(message){
 
 export function addSuccessAlert(message){
   return{
-    type: REMOVE_ALERT,
+    type: ADD_ALERT,
     alert: createAlert(message, 'success')
   }
 }
@@ -202,6 +202,7 @@ export function removeAlert(alert_id){
   }
 }
 
+let nextAlertId = 0
 function createAlert(message, level){
   return { message: message, level: level, id: (nextAlertId++).toString() }
 }
