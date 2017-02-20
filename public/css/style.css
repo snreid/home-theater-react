@@ -1,6 +1,11 @@
 #main-container {
-  padding-left: 30px;
+  padding-left: 20px;
 }
+
+#main-nav {
+  padding-left: 70px;
+}
+
 .hamburger {
   top: 10px !important;
   z-index: 1040 !important;
