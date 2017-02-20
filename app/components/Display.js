@@ -3,6 +3,7 @@ import DisplayLocations from '../containers/DisplayLocations'
 import DisplayDvds from '../containers/DisplayDvds'
 import VisibleSidebar from '../containers/VisibleSidebar'
 import VisibleAlerts from '../containers/VisibleAlerts'
+import VisibleTopNav from '../containers/VisibleTopNav'
 import { Displays } from '../actions'
 
 const Display = ({ display, addDvd, openQuickScan }) => (
@@ -12,10 +13,11 @@ const Display = ({ display, addDvd, openQuickScan }) => (
       <span className="hamb-middle"></span>
       <span className="hamb-bottom"></span>
     </button>
-    <div className="container">
-      <VisibleAlerts />
+    <div className="container" id='main-container'>
 			<div className="row" id='main-row'>
+        <VisibleTopNav />
         <div className='col-md-12' id='content'>
+          <VisibleAlerts />
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
           <DisplayDvds shouldDisplay={ display == Displays.DVDS } addDvd={() => addDvd()} openQuickScan={() => openQuickScan()} />
         </div>
