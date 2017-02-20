@@ -14,8 +14,9 @@ const Dvd = ({ DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDest
     </td>
     <td>
       <button className='btn btn-danger' onClick={onDestroy}>
-        x
+        <span className='glyphicon glyphicon-trash' aria-hidden='true'></span>
       </button>
+      &nbsp;
       <button className='btn btn-primary' onClick={editDvd}>
         <span className='glyphicon glyphicon-pencil' aria-hidden='true'></span>
       </button>
