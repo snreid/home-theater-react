@@ -14,8 +14,8 @@ const Display = ({ display, addDvd, openQuickScan }) => (
       <span className="hamb-bottom"></span>
     </button>
     <div className="container" id='main-container'>
-      <VisibleTopNav />
 			<div className="row" id='main-row'>
+        <VisibleTopNav />
         <div className='col-md-12' id='content'>
           <VisibleAlerts />
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
