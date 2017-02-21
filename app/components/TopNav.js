@@ -6,7 +6,7 @@ import AddLocation from '../containers/AddLocation'
 global.jQuery = global.$ = require('jquery')
 const bootstrap = require('bootstrap')
 
-const TopNav = ({ addDvd, openQuickScan }) => (
+const TopNav = () => (
   <div>
     <nav id='main-nav' className='navbar navbar-default navbar-fixed-top'>
       <div className='container'>
@@ -46,10 +46,5 @@ const TopNav = ({ addDvd, openQuickScan }) => (
 
   </div>
 )
-
-TopNav.propTypes = {
-  addDvd: PropTypes.func.isRequired,
-  openQuickScan: PropTypes.func.isRequired,
-}
 
 export default TopNav

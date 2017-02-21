@@ -3,7 +3,6 @@
  */
 
 export const SET_DISPLAY = 'SET_DISPLAY'
-export const SET_SIDEBAR = 'SET_SIDEBAR'
 export const DISPLAYING_DVD = 'DISPLAYING_DVD'
 export const EDITING_DVD = 'EDITING_DVD'
 export const QUICK_SCANNING = 'QUICK_SCANNING'
@@ -17,10 +16,6 @@ export const REMOVE_ALERT = 'REMOVE_ALERT'
  */
 
 export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS' }
-export const Sidebars = {
-                          SHOW_DVD: 'SHOW_DVD',
-                          EDIT_DVD: 'EDIT_DVD',
-                        }
 
 /*
  * LOCATION action creators
@@ -119,7 +114,6 @@ export function displayDvd(dvd_id){
   return function(dispatch){
     return find_dvd(dvd_id).then(function(dvd){
       dispatch(displayingDvd(dvd))
-      dispatch(changeSidebar(Sidebars.SHOW_DVD))
     })
   }
 }
@@ -128,7 +122,6 @@ export function editDvd(dvd_id){
   return function(dispatch){
     return find_dvd(dvd_id).then(function(dvd){
       dispatch(displayingDvd(dvd))
-      dispatch(changeSidebar(Sidebars.EDIT_DVD))
     })
   }
 }
@@ -166,17 +159,6 @@ export function changeDisplay(display){
   }
 }
 
-
-/*
- * SIDEBAR action creators
- */
-
-export function changeSidebar(sidebar){
-  return {
-    type: SET_SIDEBAR,
-    sidebar: sidebar
-  }
-}
 
 /*
  * ALERTS action creators

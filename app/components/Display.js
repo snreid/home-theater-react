@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react'
 import DisplayLocations from '../containers/DisplayLocations'
 import DisplayDvds from '../containers/DisplayDvds'
-import VisibleSidebar from '../containers/VisibleSidebar'
 import VisibleAlerts from '../containers/VisibleAlerts'
 import VisibleTopNav from '../containers/VisibleTopNav'
 import { Displays } from '../actions'
 
-const Display = ({ display, addDvd, openQuickScan }) => (
+const Display = ({ display }) => (
   <div id="page-content-wrapper">
     <button className="hamburger is-closed" type="button" data-toggle="offcanvas">
       <span className="hamb-top"></span>
@@ -21,7 +20,6 @@ const Display = ({ display, addDvd, openQuickScan }) => (
           <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
           <DisplayDvds shouldDisplay={ display == Displays.DVDS } addDvd={() => addDvd()} openQuickScan={() => openQuickScan()} />
         </div>
-        <VisibleSidebar />
 			</div>
     </div>
   </div>
@@ -29,8 +27,6 @@ const Display = ({ display, addDvd, openQuickScan }) => (
 
 Display.propTypes = {
   display: PropTypes.string.isRequired,
-  addDvd: PropTypes.func.isRequired,
-  openQuickScan: PropTypes.func.isRequired,
 }
 
 export default Display

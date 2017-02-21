@@ -9,8 +9,6 @@ const DvdList = ({ dvds, locations, onDestroy, displayDvd, editDvd }) => (
           {...dvd}
           locations={locations}
           onDestroy={() => onDestroy(dvd._id)}
-          displayDvd={() => displayDvd(dvd._id)}
-          editDvd={() => editDvd(dvd._id)}
         />
       )
     }
@@ -29,8 +27,6 @@ DvdList.propTypes = {
     location_id: PropTypes.string,
   }).isRequired).isRequired,
   onDestroy: PropTypes.func.isRequired,
-  displayDvd: PropTypes.func.isRequired,
-  editDvd: PropTypes.func.isRequired,
 }
 
 export default DvdList
