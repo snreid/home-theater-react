@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-var ReactDOM = require('react-dom');
-var Overlay = require('react-bootstrap').Overlay;
+var OverlayTrigger = require('react-bootstrap').OverlayTrigger;
 var Popover = require('react-bootstrap').Popover;
 var Button = require('react-bootstrap').Button;
 
@@ -13,31 +12,15 @@ const bootstrap = require('bootstrap')
 class DvdDetailsComponent extends React.Component{
   constructor(props){
     super(props)
-		this.state = {show: false, interval: null}
   }
 
 
-	delayHide() {
-    this.setState({interval: setTimeout(this._toggle.bind(this), 300)});
-  }
-
-	_toggle() {
-    clearTimeout(this.state.interval)
-    this.setState({ show: !this.state.show });
-  }
-
-	_show() {
-    clearTimeout(this.state.interval);
-    this.setState({ show: true });
-  }
 
   render(){
     let dvd = this.props.dvd
     let locations = this.props.locations
 
-    const tooltip = <Popover onMouseOver={this._show.bind(this)}
-														onMouseLeave={this._toggle.bind(this)}
-														id={dvd._id}
+    const tooltip = <Popover id={dvd._id}
 														title={dvd.DVD_Title}>
 											<ul className='list-group'>
 												<li className='list-group-item'>
@@ -62,16 +45,14 @@ class DvdDetailsComponent extends React.Component{
 												</li>
 											</ul>
 									</Popover>
-		const sharedProps = {
-      show: this.state.show,
-      container: this,
-      target: () => ReactDOM.findDOMNode(this.refs.target)
-    }
 
     return(
       <div>
-				<Button ref='target' onMouseOver={this._toggle.bind(this)} onMouseOut={this.delayHide.bind(this)}>Hover over me</Button>
-				<Overlay {...sharedProps} placement="right">{ tooltip }</Overlay>
+				<OverlayTrigger trigger={['hover', 'focus']} placement="left" overlay={tooltip}>
+					<Button ref='target' className='btn btn-default pull-right' >
+						<span className='glyphicon glyphicon-film' aria-hidden='true'></span>
+					</Button>
+				</OverlayTrigger>
       </div>
     )
   }

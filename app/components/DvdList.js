@@ -6,7 +6,7 @@ const DvdList = ({ dvds, locations, onDestroy, displayDvd, editDvd }) => (
     { dvds.map(dvd=>
         <Dvd
           key={dvd._id}
-          {...dvd}
+          dvd={dvd}
           locations={locations}
           onDestroy={() => onDestroy(dvd._id)}
         />

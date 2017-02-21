@@ -2,19 +2,19 @@ import React, { PropTypes } from 'react'
 import EditDvd from '../containers/EditDvd'
 import DvdDetails from '../containers/DvdDetails'
 
-const Dvd = ({ _id, DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy }) => {
-  let dvd = {_id: _id, DVD_Title: DVD_Title, DVD_ReleaseDate: DVD_ReleaseDate, Genre: Genre, location_id: location_id }
+const Dvd = ({ dvd, locations, onDestroy }) => {
 
   return(
     <li className='list-group-item'>
       <div className='row'>
-        <div className='col-md-9'>
+        <div className='col-md-6'>
           <h4>
-            {`${DVD_Title} `}
+            {`${dvd.DVD_Title} `}
+            <br/>
             <small>
-              {`${DVD_ReleaseDate}, `}
+              {`${dvd.DVD_ReleaseDate}; `}
               {locations.map(function(location){
-                    if(location._id == location_id){
+                    if(location._id == dvd.location_id){
                       return location.display_name
                     }
                   }
@@ -22,31 +22,36 @@ const Dvd = ({ _id, DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, o
             </small>
           </h4>
         </div>
-        <div className='col-md-3'>
-          <button className='pull-right btn btn-danger' onClick={onDestroy}>
-            <span className='glyphicon glyphicon-trash' aria-hidden='true'></span>
-          </button>
-          &nbsp;
-          <button className='pull-right btn btn-primary'
-                  data-toggle='modal'
-                  data-target={`#editDvd${_id}Modal`}>
-            <span className='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-          </button>
+        <div className='col-md-6'>
+          <div>
+            <button className='pull-right btn btn-danger' onClick={onDestroy}>
+              <span className='glyphicon glyphicon-trash' aria-hidden='true'></span>
+            </button>
+          </div>
+          <div>
+            <button className='pull-right btn btn-primary'
+                    data-toggle='modal'
+                    data-target={`#editDvd${dvd._id}Modal`}>
+              <span className='glyphicon glyphicon-pencil' aria-hidden='true'></span>
+            </button>
+          </div>
+          <DvdDetails dvd={dvd} />
         </div>
       </div>
 
       <EditDvd dvd={dvd} locations={locations}/>
-      <DvdDetails dvd={dvd} />
     </li>
   )
 }
 
 Dvd.propTypes = {
-  _id: PropTypes.string.isRequired,
-  DVD_Title: PropTypes.string.isRequired,
-  DVD_ReleaseDate: PropTypes.string,
-  Genre: PropTypes.string,
-  location_id: PropTypes.string,
+  dvd: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    DVD_Title: PropTypes.string.isRequired,
+    DVD_ReleaseDate: PropTypes.string,
+    Genre: PropTypes.string,
+    location_id: PropTypes.string,
+  }).isRequired,
   onDestroy: PropTypes.func.isRequired,
 }
 
