@@ -2,10 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addDvd } from '../actions'
 
-const path = require('path')
-const url = require('url')
-const $ = require('jquery')
-
+global.jQuery = global.$ = require('jquery')
+const bootstrap = require('bootstrap')
 
 class AddDvdComponent extends React.Component{
   constructor(props){
@@ -20,10 +18,16 @@ class AddDvdComponent extends React.Component{
     let location_node
 
     return (
-      this.props.shouldDisplay &&
-        <div className='col-md-12'>
-          <div className='row'>&nbsp;</div>
-          <div className='row'>
+
+    <div className='modal fade' id='addDvdModal' tabIndex='-1' role='dialog' aria-labelledby='addDvdModalLabel'>
+      <div className='modal-dialog' role='document'>
+        <div className='modal-content'>
+          <div className='modal-header'>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 className="modal-title" id="addDvdModalLabel">Add DVD</h4>
+          </div>
+
+          <div className='modal-body'>
             <form onSubmit={e => {
               e.preventDefault()
               if (!title.value.trim()) {
@@ -79,9 +83,14 @@ class AddDvdComponent extends React.Component{
                 Add DVD
               </button>
             </form>
-            <div className='row'>&nbsp;</div>
           </div>
+
+					<div className='modal-footer'>
+						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
         </div>
+      </div>
+    </div>
     )
   }
 }

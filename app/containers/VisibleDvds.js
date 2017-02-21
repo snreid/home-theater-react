@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { deleteDvd, displayDvd, editDvd } from '../actions'
-import { openSidebar } from '../mixins/ToggleSidebar'
 import DvdList from '../components/DvdList'
 
 const { dialog } = window.require('electron').remote
@@ -19,14 +18,6 @@ const mapDispatchToProps = (dispatch) => {
       if(answer == 0) {
         dispatch(deleteDvd(id))
       }
-    },
-    displayDvd: (id) => {
-      dispatch(displayDvd(id))
-      openSidebar()
-    },
-    editDvd: (id) => {
-      dispatch(editDvd(id))
-      openSidebar()
     },
   }
 }
