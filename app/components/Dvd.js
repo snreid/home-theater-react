@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import EditDvd from '../containers/EditDvd'
+import DvdDetails from '../containers/DvdDetails'
 
 const Dvd = ({ _id, DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, onDestroy }) => {
   let dvd = {_id: _id, DVD_Title: DVD_Title, DVD_ReleaseDate: DVD_ReleaseDate, Genre: Genre, location_id: location_id }
@@ -35,6 +36,7 @@ const Dvd = ({ _id, DVD_Title, DVD_ReleaseDate, Genre, location_id, locations, o
       </div>
 
       <EditDvd dvd={dvd} locations={locations}/>
+      <DvdDetails dvd={dvd} />
     </li>
   )
 }
