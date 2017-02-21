@@ -10,11 +10,11 @@ import { REFRESHED_LOCATIONS,
          Sidebars,
          Displays } from './actions'
 const { LOCATIONS, DVDS } = Displays
-const { ADD_DVD, SHOW_DVD, EDIT_DVD } = Sidebars
+const { SHOW_DVD, EDIT_DVD } = Sidebars
 
 const initialState = {
   display: DVDS,
-  sidebar: ADD_DVD,
+  sidebar: SHOW_DVD,
   displayingDvd: [],
   locations: [],
   dvds: [],
@@ -48,7 +48,7 @@ function display(state = DVDS, action) {
   }
 }
 
-function sidebar(state = ADD_DVD, action) {
+function sidebar(state = SHOW_DVD, action) {
   switch(action.type) {
     case SET_SIDEBAR:
       return action.sidebar

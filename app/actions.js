@@ -18,10 +18,8 @@ export const REMOVE_ALERT = 'REMOVE_ALERT'
 
 export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS' }
 export const Sidebars = {
-                          ADD_DVD: 'ADD_DVD',
                           SHOW_DVD: 'SHOW_DVD',
                           EDIT_DVD: 'EDIT_DVD',
-                          QUICK_SCAN: 'QUICK_SCAN',
                         }
 
 /*
@@ -48,6 +46,7 @@ export function refreshLocations(){
 export function addLocation(location){
   return function(dispatch){
     return add_location(location).then(function(location){
+      dispatch(addSuccessAlert(`Location ${location.display_name} added successfully`))
       dispatch(refreshLocations())
     })
   }

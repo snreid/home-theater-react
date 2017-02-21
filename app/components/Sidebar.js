@@ -13,10 +13,7 @@ const Sidebar = ({ displayingDvd, locations, sidebar }) => {
         <span className='pull-right' onClick={closeSidebar}>
           X
         </span>
-        <AddDvd shouldDisplay={ sidebar == Sidebars.ADD_DVD }/>
         <DvdDetails dvd={displayingDvd} locations={locations} shouldDisplay={sidebar == Sidebars.SHOW_DVD} />
-        <EditDvd displayingDvd={displayingDvd} location={locations} shouldDisplay={sidebar == Sidebars.EDIT_DVD} />
-        <QuickScanDvd locations={locations} shouldDisplay={sidebar == Sidebars.QUICK_SCAN } />
       </div>
     </div>
   )

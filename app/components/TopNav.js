@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import QuickScanDvd from '../containers/QuickScanDvd'
 import AddDvd from '../containers/AddDvd'
+import AddLocation from '../containers/AddLocation'
 
 global.jQuery = global.$ = require('jquery')
 const bootstrap = require('bootstrap')
@@ -21,6 +22,12 @@ const TopNav = ({ addDvd, openQuickScan }) => (
                 data-target='#quickScanModal'>
           <span className='glyphicon glyphicon-barcode' aria-hidden='true'></span>
         </button>
+        <button title='Add location'
+                className='btn btn-default navbar-btn navbar-right'
+                data-toggle='modal'
+                data-target='#addLocationModal'>
+          <span className='glyphicon glyphicon-map-marker' aria-hidden='true'></span>
+        </button>
 
         <form className='navbar-form navbar-right' role='search'>
           <div className='form-group'>
@@ -33,9 +40,9 @@ const TopNav = ({ addDvd, openQuickScan }) => (
       </div>
     </nav>
 
-
     <QuickScanDvd />
     <AddDvd />
+    <AddLocation />
 
   </div>
 )

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { updateDvd } from '../actions'
 
-const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations }) => {
+const EditDvdComponent = ({ dispatch, dvd, locations }) => {
     let title
     let date
     let genre
@@ -10,22 +10,27 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
     let location_node
 
     return (
-      shouldDisplay &&
-        <div className='col-md-12'>
-          <div className='row'>&nbsp;</div>
-          <div className='row'>
+    <div className='modal fade' id={`editDvd${dvd._id}Modal`} tabIndex='-1' role='dialog' aria-labelledby='editDvdModalLabel'>
+      <div className='modal-dialog' role='document'>
+        <div className='modal-content'>
+          <div className='modal-header'>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 className="modal-title" id="editDvdModalLabel">{`Editing ${dvd.DVD_Title}`}</h4>
+          </div>
+
+          <div className='modal-body'>
             <form onSubmit={e => {
               e.preventDefault()
               if (!title.value.trim()) {
                 return
               }
               var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value, notes: notes.value}
-              dispatch(updateDvd(displayingDvd._id, params))
+              dispatch(updateDvd(dvd._id, params))
             }}>
               <div className='form-group'>
                 <label>Title: </label>
                 <input className='form-control'
-                       defaultValue={displayingDvd.DVD_Title}
+                       defaultValue={dvd.DVD_Title}
                        ref={node => {
                          title = node
                        }}
@@ -34,7 +39,7 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
               <div className='form-group'>
                 <label>Release Date: </label>
                 <input className='form-control'
-                       defaultValue={displayingDvd.DVD_ReleaseDate}
+                       defaultValue={dvd.DVD_ReleaseDate}
                         ref={node => {
                           date = node
                         }}
@@ -43,7 +48,7 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
               <div className='form-group'>
                 <label>Genre: </label>
                 <input className='form-control'
-                       defaultValue={displayingDvd.Genre}
+                       defaultValue={dvd.Genre}
                        ref={node => {
                         genre= node
                        }}
@@ -52,7 +57,7 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
               <div className='form-group'>
                 <label>Location: </label>
                 <select className='form-control'
-                        defaultValue={displayingDvd.location_id}
+                        defaultValue={dvd.location_id}
                         ref={node => {
                           location_node= node
                         }}
@@ -69,7 +74,7 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
                 <div className='form-group'>
                   <label>Notes: </label>
                   <textarea className='form-control'
-                            defaultValue={displayingDvd.notes}
+                            defaultValue={dvd.notes}
                             ref={node => {
                               notes = node
                             }}
@@ -80,18 +85,17 @@ const EditDvdComponent = ({ dispatch, shouldDisplay, displayingDvd, locations })
                 Update DVD
               </button>
             </form>
-            <div className='row'>&nbsp;</div>
           </div>
+
+					<div className='modal-footer'>
+						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
         </div>
+      </div>
+    </div>
     )
 }
-const mapStateToProps = (state) => {
-  return {
-    locations: state.locations,
-    displayingDvd: state.displayingDvd
-  }
-}
 
-let EditDvd = connect(mapStateToProps)(EditDvdComponent)
+let EditDvd = connect()(EditDvdComponent)
 
 export default EditDvd
