@@ -9,7 +9,7 @@ const bootstrap = require('bootstrap')
 var Tooltip = require('react-bootstrap').Tooltip
 var OverlayTrigger = require('react-bootstrap').OverlayTrigger
 
-const TopNav = ({ dispatch }) => {
+const TopNav = ({ dispatch, locations }) => {
   var addDVDTooltip = (
     <Tooltip id='add-dvd-tooltip'>Add DVD</Tooltip>
   )
@@ -20,6 +20,7 @@ const TopNav = ({ dispatch }) => {
     <Tooltip id='quick-scan-tooltip'><strong>Quick Scanner</strong> add DVDs by scanning their barcode.</Tooltip>
   )
   let search_node
+  let location_node
 
   return(
     <div>
@@ -51,10 +52,11 @@ const TopNav = ({ dispatch }) => {
                 role='search'
                 onSubmit={e => {
                   e.preventDefault()
-                  if(!search_node.value.trim()){
-                    return
+                  let filters
+                  if(location_node.value.trim()){
+                    filters = { location_id: location_node.value }
                   }
-                  dispatch(searchDvds(search_node.value))
+                  dispatch(searchDvds(search_node.value, filters))
                 }}
           >
             <div className='form-group'>
@@ -65,6 +67,25 @@ const TopNav = ({ dispatch }) => {
                       search_node = node
                     }}
               />
+            </div>
+            <div className='form-group'>
+                <select className='form-control'
+                        defaultValue=''
+                        ref={node => {
+                          location_node= node
+                        }}>
+                  <option value=''>
+                    -- Choose --
+                  </option>
+                  {locations.map(function(location){
+                    return(
+                      <option key={location._id} value={location._id}>
+                        {location.display_name}
+                      </option>
+                    )
+                    }
+                  )}
+                </select>
             </div>
             <button className='btn btn-default'>
               <span className='glyphicon glyphicon-search' aria-hidden='true'></span>

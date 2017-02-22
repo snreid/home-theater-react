@@ -29,10 +29,10 @@ class Dvd {
     })
   }
 
-  static search(term){
+  static search(term, filters){
     return new Promise(function(resolve, reject){
       var regex = new RegExp(term, 'i')
-      db.find({ $or:[{DVD_Title: regex }, {Genre: regex}, {notes: regex},{DVD_ReleaseDate: regex}, {UPC: regex} ]}, function(err, docs){
+      db.find({$and:[ filters, { $or:[{DVD_Title: regex }, {Genre: regex}, {notes: regex},{DVD_ReleaseDate: regex}, {UPC: regex} ] } ]}, function(err, docs){
         if(err){
           reject(err)
         }
@@ -122,8 +122,8 @@ var update_dvd = function(_id, args){
   return Dvd.update(_id, args)
 }
 
-var search_dvds = function(term){
-  return Dvd.search(term)
+var search_dvds = function(term, filters){
+  return Dvd.search(term, filters)
 }
 
 export { all_dvds, add_dvd, find_dvd, destroy_dvd, update_dvd, search_dvds }

@@ -82,9 +82,10 @@ export function refreshDvds(){
   }
 }
 
-export function searchDvds(term){
+export function searchDvds(term, filters = {}){
   return function(dispatch){
-    return search_dvds(term).then(function(dvds){
+    return search_dvds(term, filters).then(function(dvds){
+      console.log(dvds.length)
       dispatch(refreshedDvds(dvds))
     })
   }
