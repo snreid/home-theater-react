@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react'
 import QuickScanDvd from '../containers/QuickScanDvd'
 import AddDvd from '../containers/AddDvd'
 import AddLocation from '../containers/AddLocation'
+import { searchDvds } from '../actions'
 
 global.jQuery = global.$ = require('jquery')
 const bootstrap = require('bootstrap')
-
 var Tooltip = require('react-bootstrap').Tooltip
 var OverlayTrigger = require('react-bootstrap').OverlayTrigger
 
-const TopNav = () => {
+const TopNav = ({ dispatch }) => {
   var addDVDTooltip = (
     <Tooltip id='add-dvd-tooltip'>Add DVD</Tooltip>
   )
@@ -19,6 +19,7 @@ const TopNav = () => {
   var quickScanTooltip = (
     <Tooltip id='quick-scan-tooltip'><strong>Quick Scanner</strong> add DVDs by scanning their barcode.</Tooltip>
   )
+  let search_node
 
   return(
     <div>
@@ -46,9 +47,24 @@ const TopNav = () => {
             </button>
           </OverlayTrigger>
 
-          <form className='navbar-form navbar-right' role='search'>
+          <form className='navbar-form navbar-right'
+                role='search'
+                onSubmit={e => {
+                  e.preventDefault()
+                  if(!search_node.value.trim()){
+                    return
+                  }
+                  dispatch(searchDvds(search_node.value))
+                }}
+          >
             <div className='form-group'>
-              <input type='text' className='form-control' placeholder='Search'/>
+              <input type='text'
+                    className='form-control'
+                    placeholder='Search'
+                    ref={node=>{
+                      search_node = node
+                    }}
+              />
             </div>
             <button className='btn btn-default'>
               <span className='glyphicon glyphicon-search' aria-hidden='true'></span>

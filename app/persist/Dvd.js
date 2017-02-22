@@ -29,6 +29,23 @@ class Dvd {
     })
   }
 
+  static search(term){
+    return new Promise(function(resolve, reject){
+      var regex = new RegExp(term, 'i')
+      db.find({ $or:[{DVD_Title: regex }, {Genre: regex}, {notes: regex},{DVD_ReleaseDate: regex}, {UPC: regex} ]}, function(err, docs){
+        if(err){
+          reject(err)
+        }
+        else{
+          var dvds = docs.map(function(doc){
+            return new Dvd(doc)
+          })
+          resolve(dvds)
+        }
+      })
+    })
+  }
+
   static findOne(args){
     return new Promise(function(resolve, reject){
       db.findOne(args, function(err, doc) {
@@ -105,4 +122,8 @@ var update_dvd = function(_id, args){
   return Dvd.update(_id, args)
 }
 
-export { all_dvds, add_dvd, find_dvd, destroy_dvd, update_dvd }
+var search_dvds = function(term){
+  return Dvd.search(term)
+}
+
+export { all_dvds, add_dvd, find_dvd, destroy_dvd, update_dvd, search_dvds }

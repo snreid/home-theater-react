@@ -58,7 +58,7 @@ export function deleteLocation(location_id){
 /*
  * DVD action creators
  */
-import { all_dvds, add_dvd, find_dvd, destroy_dvd, update_dvd } from './persist/Dvd'
+import { all_dvds, add_dvd, find_dvd, destroy_dvd, update_dvd, search_dvds } from './persist/Dvd'
 
 export function refreshedDvds(dvds){
   return {
@@ -77,6 +77,14 @@ export function displayingDvd(dvd){
 export function refreshDvds(){
   return function(dispatch){
     return all_dvds().then(function(dvds){
+      dispatch(refreshedDvds(dvds))
+    })
+  }
+}
+
+export function searchDvds(term){
+  return function(dispatch){
+    return search_dvds(term).then(function(dvds){
       dispatch(refreshedDvds(dvds))
     })
   }
