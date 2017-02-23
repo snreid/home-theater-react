@@ -15,6 +15,12 @@
   z-index: 1040 !important;
 }
 
+#loader-message {
+  text-align: center;
+  position: relative;
+  top: 30%;
+  font-size: 25px;
+}
 /* SPINNER from: https://projects.lukehaas.me/css-loaders/ */
 #loader {
   margin: 100px auto;
