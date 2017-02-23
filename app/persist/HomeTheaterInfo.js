@@ -1,10 +1,11 @@
+import { dismiss } from '../mixins/DismissLoader'
 const { dialog } = window.require('electron').remote
 
 var Datastore = require('nedb')
 
-var db = new Datastore({ filename: 'home_theater_infos.db', autoload: true})
-
-//db.loadDatabase()
+var db = new Datastore({ filename: 'home_theater_infos.db', autoload: true, onload: function(){
+  dismiss()
+}})
 
 class HomeTheaterInfo {
   constructor(args) {

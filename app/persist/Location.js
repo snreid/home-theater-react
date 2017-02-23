@@ -1,6 +1,9 @@
+import { dismiss } from '../mixins/DismissLoader'
 var Datastore = require('nedb')
 
-var db = new Datastore({ filename: 'locations.db', autoload: true })
+var db = new Datastore({ filename: 'locations.db', autoload: true, onload: function(){
+  dismiss()
+}})
 
 class Location {
   constructor(args){
