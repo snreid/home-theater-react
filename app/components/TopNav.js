@@ -60,6 +60,25 @@ const TopNav = ({ dispatch, locations }) => {
                 }}
           >
             <div className='form-group'>
+              <select className='form-control'
+                      defaultValue=''
+                      ref={node => {
+                        location_node= node
+                      }}>
+                <option value=''>
+                  Filter Location
+                </option>
+                {locations.map(function(location){
+                  return(
+                    <option key={location._id} value={location._id}>
+                      {location.display_name}
+                    </option>
+                  )
+                  }
+                )}
+              </select>
+            </div>
+            <div className='form-group'>
               <input type='text'
                     className='form-control'
                     placeholder='Search'
@@ -67,25 +86,6 @@ const TopNav = ({ dispatch, locations }) => {
                       search_node = node
                     }}
               />
-            </div>
-            <div className='form-group'>
-                <select className='form-control'
-                        defaultValue=''
-                        ref={node => {
-                          location_node= node
-                        }}>
-                  <option value=''>
-                    -- Choose --
-                  </option>
-                  {locations.map(function(location){
-                    return(
-                      <option key={location._id} value={location._id}>
-                        {location.display_name}
-                      </option>
-                    )
-                    }
-                  )}
-                </select>
             </div>
             <button className='btn btn-default'>
               <span className='glyphicon glyphicon-search' aria-hidden='true'></span>
