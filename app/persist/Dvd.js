@@ -15,7 +15,7 @@ class Dvd {
 
   static find(){
     return new Promise(function(resolve, reject){
-      db.find({}, function(err, docs) {
+      db.find({}).sort({DVD_Title: 1}).exec(function(err, docs) {
         if(err){
           reject(err)
         }
