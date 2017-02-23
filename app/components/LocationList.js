@@ -21,7 +21,7 @@ const LocationList = ({ locations, onDestroy }) => (
         )
       }
       { locations.length == 0 &&
-        <tr><td colSpan='4'>Loading Locations...</td></tr>
+        <tr><td colSpan='4'><strong>No Locations Found</strong></td></tr>
       }
     </tbody>
   </table>

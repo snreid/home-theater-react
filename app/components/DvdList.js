@@ -13,7 +13,7 @@ const DvdList = ({ dvds, locations, onDestroy, displayDvd, editDvd }) => (
       )
     }
     { dvds.length == 0 &&
-      <li className='list-group-item' colSpan='5'>Loading DVD Library...</li>
+      <li className='list-group-item' colSpan='5'><strong>No DVDs Found</strong></li>
     }
   </ul>
 )

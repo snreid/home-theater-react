@@ -35,7 +35,7 @@ class Dvd {
   static search(term, filters){
     return new Promise(function(resolve, reject){
       var regex = new RegExp(term, 'i')
-      db.find({$and:[ filters, { $or:[{DVD_Title: regex }, {Genre: regex}, {notes: regex},{DVD_ReleaseDate: regex}, {UPC: regex} ] } ]}, function(err, docs){
+      db.find({$and:[ filters, { $or:[{DVD_Title: regex }, {Genre: regex}, {notes: regex},{DVD_ReleaseDate: regex}, {UPC: regex} ] } ]}).sort({DVD_Title:1}).exec(function(err, docs){
         if(err){
           reject(err)
         }
