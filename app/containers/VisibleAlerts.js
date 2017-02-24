@@ -17,7 +17,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
 const VisibleAlerts = connect(
   mapStateToProps,
   mapDispatchToProps,

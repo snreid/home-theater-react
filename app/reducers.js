@@ -4,10 +4,15 @@ import { REFRESHED_LOCATIONS,
          EDITING_DVD,
          DISPLAYING_DVD,
          REFRESHED_DVDS,
-         ADD_ALERT,
+         ADD_DVD_ALERT,
+         ADD_LOCATION_ALERT,
+         ADD_QUICK_SCAN_ALERT,
          REMOVE_ALERT,
+         Alerts,
          Displays } from './actions'
+
 const { LOCATIONS, DVDS } = Displays
+
 
 const initialState = {
   display: DVDS,
@@ -63,10 +68,24 @@ function editingDvd(state = [], action) {
 }
 
 function alerts(state = [], action) {
+  let newState
   switch(action.type){
-    case ADD_ALERT:
+    case ADD_DVD_ALERT:
+      newState = state.filter(alert => alert.type != Alerts.DVDS)
       return [
-        ...state,
+        ...newState,
+        action.alert
+      ]
+    case ADD_LOCATION_ALERT:
+      newState = state.filter(alert => alert.type != Alerts.LOCATIONS)
+      return [
+        ...newState,
+        action.alert
+      ]
+    case ADD_QUICK_SCAN_ALERT:
+      newState = state.filter(alert => alert.type != Alerts.QUICK_SCAN)
+      return [
+        ...newState,
         action.alert
       ]
     case REMOVE_ALERT:

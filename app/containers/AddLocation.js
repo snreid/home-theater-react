@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addLocation } from '../actions'
+import VisibleAlerts from '../containers/VisibleAlerts'
 
 let AddLocation = ({ dispatch }) => {
   let row
@@ -17,6 +18,7 @@ let AddLocation = ({ dispatch }) => {
           </div>
 
           <div className='modal-body'>
+            <VisibleAlerts />
             <form onSubmit={e => {
               e.preventDefault()
               if (!shelf.value.trim() || !row.value.trim() || !stack.value.trim()) {

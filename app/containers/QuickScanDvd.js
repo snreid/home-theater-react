@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addDvdFromHomeTheaterInfo } from '../actions'
+import VisibleAlerts from '../containers/VisibleAlerts'
 
 global.jQuery = global.$ = require('jquery')
 const bootstrap = require('bootstrap')
@@ -19,6 +20,7 @@ const QuickScanDvdComponent = ({dispatch, shouldDisplay, locations}) => {
           </div>
 
           <div className='modal-body'>
+            <VisibleAlerts />
 						<form onSubmit={e => {
 							e.preventDefault()
 							if (!upc_node.value.trim()) {

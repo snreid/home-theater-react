@@ -8,7 +8,9 @@ export const EDITING_DVD = 'EDITING_DVD'
 export const QUICK_SCANNING = 'QUICK_SCANNING'
 export const REFRESHED_LOCATIONS = 'REFRESHED_LOCATIONS'
 export const REFRESHED_DVDS = 'REFRESHED_DVDS'
-export const ADD_ALERT = 'ADD_ALERT'
+export const ADD_DVD_ALERT= 'ADD_DVD_ALERT'
+export const ADD_LOCATION_ALERT = 'ADD_LOCATION_ALERT'
+export const ADD_QUICK_SCAN_ALERT = 'ADD_QUICK_SCAN_ALERT'
 export const REMOVE_ALERT = 'REMOVE_ALERT'
 
 /*
@@ -16,6 +18,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT'
  */
 
 export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS' }
+export const Alerts = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS', QUICK_SCAN:'QUICK_SCAN' }
 
 /*
  * LOCATION action creators
@@ -41,7 +44,7 @@ export function refreshLocations(){
 export function addLocation(location){
   return function(dispatch){
     return add_location(location).then(function(location){
-      dispatch(addSuccessAlert(`Location ${location.display_name} added successfully`))
+      dispatch(addLocationSuccessAlert(`Location ${location.display_name} added successfully`))
       dispatch(refreshLocations())
     })
   }
@@ -94,7 +97,7 @@ export function addDvd(dvd){
   return function(dispatch){
     return add_dvd(dvd).then(function(dvd){
       dispatch(refreshDvds())
-      dispatch(addSuccessAlert(`Added "${dvd.DVD_Title}" to library`))
+      dispatch(addDVDSuccessAlert(`Added "${dvd.DVD_Title}" to library`))
     })
   }
 }
@@ -103,7 +106,7 @@ export function deleteDvd(dvd_id){
   return function(dispatch){
     return destroy_dvd(dvd_id).then(function(dvd){
       dispatch(refreshDvds())
-      dispatch(addSuccessAlert('Removed from library'))
+      dispatch(addDVDSuccessAlert('Removed from library'))
     })
   }
 }
@@ -113,7 +116,7 @@ export function updateDvd(dvd_id, params){
     return update_dvd(dvd_id, params).then(function(dvd){
       dispatch(refreshDvds())
       dispatch(displayDvd(dvd_id))
-      dispatch(addSuccessAlert(`"${params.DVD_Title}" successfully updated`))
+      dispatch(addDVDSuccessAlert(`"${params.DVD_Title}" successfully updated`))
     })
   }
 }
@@ -150,7 +153,7 @@ export function addDvdFromHomeTheaterInfo(params){
         dispatch(addDvd(new_dvd))
       }
       else{
-        dispatch(addFailureAlert(`DVD not found for UPC: ${params.UPC}`))
+        dispatch(addQuickScanFailureAlert(`DVD not found for UPC: ${params.UPC}`))
       }
     })
   }
@@ -172,17 +175,45 @@ export function changeDisplay(display){
  * ALERTS action creators
  */
 
-export function addFailureAlert(message){
+export function addDVDSuccessAlert(message){
   return{
-    type: ADD_ALERT,
-    alert: createAlert(message, 'danger')
+    type: ADD_DVD_ALERT,
+    alert: createAlert(message, 'success', Alerts.DVDS)
   }
 }
 
-export function addSuccessAlert(message){
+export function addLocationSuccessAlert(message){
   return{
-    type: ADD_ALERT,
-    alert: createAlert(message, 'success')
+    type: ADD_LOCATION_ALERT,
+    alert: createAlert(message, 'success', Alerts.LOCATIONS)
+  }
+}
+
+export function addQuickScanSuccessAlert(message){
+  return{
+    type: ADD_QUICK_SCAN_ALERT,
+    alert: createAlert(message, 'success', Alerts.QUICK_SCAN)
+  }
+}
+
+export function addDVDFailureAlert(message){
+  return{
+    type: ADD_DVD_ALERT,
+    alert: createAlert(message, 'danger', Alerts.DVDS)
+  }
+}
+
+export function addLocationFailureAlert(message){
+  return{
+    type: ADD_LOCATION_ALERT,
+    alert: createAlert(message, 'danger', Alerts.LOCATIONS)
+  }
+}
+
+export function addQuickScanFailureAlert(message){
+  return{
+    type: ADD_QUICK_SCAN_ALERT,
+    alert: createAlert(message, 'danger', Alerts.QUICK_SCAN)
   }
 }
 
@@ -194,6 +225,7 @@ export function removeAlert(alert_id){
 }
 
 let nextAlertId = 0
-function createAlert(message, level){
-  return { message: message, level: level, id: (nextAlertId++).toString() }
+
+function createAlert(message, level, type){
+  return { message: message, type: type, level: level, id: (nextAlertId++).toString() }
 }

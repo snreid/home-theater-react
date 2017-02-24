@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addDvd } from '../actions'
+import VisibleAlerts from '../containers/VisibleAlerts'
 
 global.jQuery = global.$ = require('jquery')
 const bootstrap = require('bootstrap')
@@ -28,6 +29,7 @@ class AddDvdComponent extends React.Component{
           </div>
 
           <div className='modal-body'>
+            <VisibleAlerts />
             <form onSubmit={e => {
               e.preventDefault()
               if (!title.value.trim()) {
