@@ -12,12 +12,13 @@ export const ADD_DVD_ALERT= 'ADD_DVD_ALERT'
 export const ADD_LOCATION_ALERT = 'ADD_LOCATION_ALERT'
 export const ADD_QUICK_SCAN_ALERT = 'ADD_QUICK_SCAN_ALERT'
 export const REMOVE_ALERT = 'REMOVE_ALERT'
+export const REFRESHED_HOME_THEATER = 'REFRESHED_HOME_THEATER'
 
 /*
  * other constants
  */
 
-export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS' }
+export const Displays = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS', HOME_THEATER: 'HOME_THEATER' }
 export const Alerts = { LOCATIONS: 'LOCATIONS', DVDS: 'DVDS', QUICK_SCAN:'QUICK_SCAN' }
 
 /*
@@ -142,7 +143,22 @@ export function editDvd(dvd_id){
  * HomeTheaterInfo action creators
  */
 
-import { find_by_upc } from './persist/HomeTheaterInfo'
+import { find_by_upc, search_home_theater} from './persist/HomeTheaterInfo'
+
+export function searchHomeTheater(term){
+  return function(dispatch){
+    return search_home_theater(term).then(function(dvds){
+      dispatch(refreshedHomeTheater(dvds))
+    })
+  }
+}
+
+export function refreshedHomeTheater(dvds){
+  return {
+    type: REFRESHED_HOME_THEATER,
+    dvds: dvds
+  }
+}
 
 export function addDvdFromHomeTheaterInfo(params){
   return function(dispatch){

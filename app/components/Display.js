@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import DisplayLocations from '../containers/DisplayLocations'
 import DisplayDvds from '../containers/DisplayDvds'
+import DisplayHomeTheater from '../containers/DisplayHomeTheater'
 import VisibleAlerts from '../containers/VisibleAlerts'
 import VisibleTopNav from '../containers/VisibleTopNav'
 import { Displays } from '../actions'
@@ -20,6 +21,7 @@ const Display = ({ display }) => (
             <VisibleAlerts />
             <DisplayLocations shouldDisplay={ display == Displays.LOCATIONS } />
             <DisplayDvds shouldDisplay={ display == Displays.DVDS } addDvd={() => addDvd()} openQuickScan={() => openQuickScan()} />
+            <DisplayHomeTheater shouldDisplay={ display == Displays.HOME_THEATER} />
           </div>
         </div>
       </div>

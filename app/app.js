@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 const path = require('path')
 import dvdApp from './reducers'
-import { refreshLocations, refreshDvds } from './actions'
+import { refreshLocations, refreshDvds, refreshHomeTheater } from './actions'
 import App from './components/App'
 
 global.jQuery = global.$ = require('jquery')

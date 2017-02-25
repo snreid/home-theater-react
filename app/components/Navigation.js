@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Displays } from '../actions'
 import { importDvdLibrary } from '../hometheaterinfo'
 
-const Navigation = ({ display, changeToLocations, changeToDvds }) => (
+const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeTheater }) => (
   <div id="sidebar-wrapper" role="navigation" className="navbar navbar-inverse navbar-fixed-top">
     <ul className="nav sidebar-nav">
 			<li className="sidebar-brand">
@@ -21,6 +21,11 @@ const Navigation = ({ display, changeToLocations, changeToDvds }) => (
 				</a>
 			</li>
 			<li className="nav-closer" data-toggle="offcanvas">
+				<a href="#" onClick={changeToHomeTheater}>
+					Search Home Theater Database
+				</a>
+			</li>
+			<li className="nav-closer" data-toggle="offcanvas">
 				<a href="#" onClick={importDvdLibrary}>
 					Import Home Theater Info
 				</a>
@@ -32,6 +37,7 @@ const Navigation = ({ display, changeToLocations, changeToDvds }) => (
 Navigation.propTypes = {
   display: PropTypes.string.isRequired,
   changeToLocations: PropTypes.func.isRequired,
+  changeToHomeTheater: PropTypes.func.isRequired,
   changeToDvds: PropTypes.func.isRequired,
 }
 

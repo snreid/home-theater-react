@@ -43,6 +43,23 @@ class HomeTheaterInfo {
     })
   }
 
+  static search(term){
+    return new Promise(function(resolve, reject){
+      var regex = new RegExp(term, 'i')
+      db.find({ $or:[{DVD_Title: regex }, {Genre: regex}, {DVD_ReleaseDate: regex}, {UPC: regex} ] }).sort({DVD_Title:1}).exec(function(err, docs){
+        if(err){
+          reject(err)
+        }
+        else{
+          var dvds = docs.map(function(doc){
+            return new HomeTheaterInfo(doc)
+          })
+          resolve(dvds)
+        }
+      })
+    })
+  }
+
   static findOne(args){
     return new Promise(function(resolve, reject){
       db.findOne(args, function(err, doc) {
@@ -103,4 +120,13 @@ var find_by_upc = function(upc){
   return HomeTheaterInfo.findOne({UPC: upc})
 }
 
-export { purge, insert, bulk_insert, find_all, find_by_upc }
+var search_home_theater = function(term){
+  return HomeTheaterInfo.search(term)
+}
+
+export {  purge,
+          insert,
+          bulk_insert,
+          find_all,
+          find_by_upc,
+          search_home_theater }

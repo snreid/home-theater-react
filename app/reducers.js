@@ -4,6 +4,7 @@ import { REFRESHED_LOCATIONS,
          EDITING_DVD,
          DISPLAYING_DVD,
          REFRESHED_DVDS,
+         REFRESHED_HOME_THEATER,
          ADD_DVD_ALERT,
          ADD_LOCATION_ALERT,
          ADD_QUICK_SCAN_ALERT,
@@ -19,6 +20,7 @@ const initialState = {
   displayingDvd: [],
   locations: [],
   dvds: [],
+  homeTheaterDvds: [],
   alerts: [],
 }
 
@@ -34,6 +36,15 @@ function locations(state = [], action){
 function dvds(state = [], action){
   switch (action.type) {
     case REFRESHED_DVDS:
+      return action.dvds
+    default:
+      return state
+  }
+}
+
+function homeTheaterDvds(state = [], action){
+  switch (action.type) {
+    case REFRESHED_HOME_THEATER:
       return action.dvds
     default:
       return state
@@ -97,6 +108,7 @@ function alerts(state = [], action) {
 
 const dvdApp = combineReducers({
   display,
+  homeTheaterDvds,
   dvds,
   locations,
   editingDvd,

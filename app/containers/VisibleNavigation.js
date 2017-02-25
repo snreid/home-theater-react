@@ -15,7 +15,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     changeToDvds: () => {
       dispatch(changeDisplay(Displays.DVDS))
-    }
+    },
+    changeToHomeTheater: () => {
+      dispatch(changeDisplay(Displays.HOME_THEATER))
+    },
   }
 }
 
