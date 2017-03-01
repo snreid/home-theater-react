@@ -13,9 +13,7 @@ const HomeTheater = ({ homeTheaterDvds, addDvd, searchHomeTheater }) =>{
         searchHomeTheater(search_node.value)
       }}>
         <div className='form-group'>
-          <input className='form-control' ref={node =>{search_node = node}} />
-        </div>
-        <div className='form-group'>
+          <input className='form-control' placeholder='Search Home Theater Database' ref={node =>{search_node = node}} />
           <button className="btn btn-default" type="submit">
             <span className='glyphicon glyphicon-search' aria-hidden='true'></span>
           </button>

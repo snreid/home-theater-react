@@ -5,7 +5,7 @@ const HomeTheaterDvd = ({ dvd, addDvd }) => {
   let year = (isNaN(parseInt(dvd.DVD_ReleaseDate)) ? dvd.DVD_ReleaseDate : parseInt(dvd.DVD_ReleaseDate))
 
   return (
-    <li className='list-group-item disabled'>
+    <li className='list-group-item list-group-item-info'>
       <div className='row'>
         <div className='col-md-9'>
           <h4>

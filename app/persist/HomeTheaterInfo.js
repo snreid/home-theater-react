@@ -1,4 +1,5 @@
 import { dismiss } from '../mixins/DismissLoader'
+import { escapeRegExp } from '../mixins/Escaper'
 const { dialog } = window.require('electron').remote
 
 var Datastore = require('nedb')
@@ -45,7 +46,7 @@ class HomeTheaterInfo {
 
   static search(term){
     return new Promise(function(resolve, reject){
-      var regex = new RegExp(term, 'i')
+      var regex = new RegExp(escapeRegExp(term), 'i')
       db.find({ $or:[{DVD_Title: regex }, {Genre: regex}, {DVD_ReleaseDate: regex}, {UPC: regex} ] }).sort({DVD_Title:1}).exec(function(err, docs){
         if(err){
           reject(err)
