@@ -1,5 +1,5 @@
 import { dismiss } from '../mixins/DismissLoader'
-import { escapeRegExp } from '../mixins/Escaper'
+import { escapeRegExp, splitTerms } from '../mixins/Escaper'
 var Datastore = require('nedb')
 
 var db = new Datastore({ filename: 'dvds.db', autoload: true, onload: function(){
@@ -35,8 +35,18 @@ class Dvd {
 
   static search(term, filters){
     return new Promise(function(resolve, reject){
-      var regex = new RegExp(escapeRegExp(term), 'i')
-      db.find({$and:[ filters, { $or:[{DVD_Title: regex }, {Genre: regex}, {notes: regex},{DVD_ReleaseDate: regex}, {UPC: regex} ] } ]}).sort({DVD_Title:1}).exec(function(err, docs){
+      var regex = new RegExp(splitTerms(escapeRegExp(term)), 'ig')
+      db.find({ $where: function() {
+          var string = `${this.DVD_Title} ${this.Genre} ${this.notes} ${this.DVD_ReleaseDate} ${this.UPC}`
+          var results = regex.exec(string)
+          if (results == null){
+            return false
+          }
+          else{
+            return true
+          }
+        }
+      }).sort({DVD_Title: 1}).exec(function(err, docs){
         if(err){
           reject(err)
         }

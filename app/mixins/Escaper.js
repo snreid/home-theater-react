@@ -3,6 +3,8 @@ export function escapeRegExp(string){
 }
 
 export function splitTerms(string){
-  var new_string = string.split(' ')
-  return new_string.join('|')
+  var new_string = string.split(' ').map(function(term){
+    return "(?=.*" + term + ")"
+  })
+  return new_string.join("")
 }
