@@ -27,9 +27,10 @@ export function exportCsv(){
 
       fs.writeFile(answer[0] + '/my-dvd-library.csv', result, function(err){
         if(err){
-          return console.log(err)
+          dialog.showMessageBox({type: 'error', message:"There was a problem saving your DVD export."})
+          return false
         }
-        console.log('file was saved!')
+        dialog.showMessageBox({type: 'info', message:`Dvds exported to ${answer[0]}/my-dvd-library.csv`})
       })
     })
   })
