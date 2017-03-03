@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Displays } from '../actions'
 import { importDvdLibrary } from '../hometheaterinfo'
+import { exportCsv } from '../exportLibrary'
 
 const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeTheater }) => (
   <div id="sidebar-wrapper" role="navigation" className="navbar navbar-inverse navbar-fixed-top">
@@ -30,6 +31,12 @@ const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeThea
 					Import Home Theater Info
 				</a>
 			</li>
+			<li className="nav-closer" data-toggle="offcanvas">
+				<a href="#" onClick={exportCsv}>
+					Export Library (CSV)
+				</a>
+			</li>
+
     </ul>
   </div>
 )
