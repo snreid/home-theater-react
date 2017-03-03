@@ -1,9 +1,17 @@
 import { purge, insert, bulk_insert } from './persist/HomeTheaterInfo'
+global.jQuery = global.$ = require('jquery')
 
 const { dialog } = window.require('electron').remote
 
 export function importDvdLibrary(){
   var answer = dialog.showMessageBox({type: 'warning', buttons: ["OK", "Cancel"], title: "Confirm Delete", message: "Are you sure you want import? This may take some time."})
+  //step 1
+  $('#hti-progress').addClass('progress').show()
+  $('#hti-loading-bar').addClass('progress-bar progress-bar-success progress-bar-striped active')
+
+  $('#hti-loading-bar').css('width', '5%')
+  $('#hti-loading-message').html('Downloading Home Theater Info database...')
+
   if(answer == 0) {
     var file_url = 'http://www.hometheaterinfo.com/download/dvd_csv.zip'
     //var file_url = 'http://127.0.0.1/home_theater_infos'
@@ -14,7 +22,6 @@ export function importDvdLibrary(){
     var request = require('request')
     var fs = window.require("fs")
 
-    console.log('starting import')
     var options = {
       host: url.parse(file_url).host,
       port: 80,
@@ -28,9 +35,10 @@ export function importDvdLibrary(){
       res.on('data', function(chunk){
         data.push(chunk)
         dataLen += chunk.length
-        console.log('getting data...')
       }).on('end', function(){
-        console.log('retrieved file. Processing...')
+        //step 2
+        $('#hti-loading-bar').css('width', '20%')
+
         var buf = new Buffer(dataLen)
 
         for(var i = 0, len = data.length, pos=0; i < len; i++) {
@@ -42,22 +50,27 @@ export function importDvdLibrary(){
         var zipEntries = zip.getEntries()
         var stream
 
-        console.log('Extracted zipped files. Opening...')
 
-        console.log('Purging old db...')
+        //Step 4
+        $('#hti-loading-bar').css('width', '35%')
+        $('#hti-loading-message').html('Dumping outdated Home Theater Info database...')
         purge()
-        console.log('Done purging.')
 
         for(var i = 0; i < zipEntries.length; i++){
           if(zipEntries[i].name == 'dvd_csv.txt'){
-            console.log('gathering records...')
+            //Step 5
+            $('#hti-loading-bar').css('width', '50%')
+            $('#hti-loading-message').html('Gathering DVDs...')
+
             var records = []
             csv.fromString(zip.readAsText(zipEntries[i]), { headers: true, quote:'"' })
               .on('data', function(data){
                   records.push(data)
                 })
               .on('end', function(){
-                  console.log('writing ' + records.length + ' records...')
+                  //Step 6
+                  $('#hti-loading-bar').css('width', '65%')
+                  $('#hti-loading-message').html('Writing DVDs to database...')
                   bulk_insert(records)
                 })
           }

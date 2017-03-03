@@ -8,13 +8,26 @@ const HomeTheater = ({ homeTheaterDvds, addDvd, searchHomeTheater }) =>{
   return(
     <div>
       <div className='well'>
-        <p>
-          Quick Scan is powered by <a onClick={openHomeTheater}>Home Theater Info </a>
-          and gives you the ability to add your DVDS by simply scanning the barcode.
-        </p>
-        <button className='btn btn-primary' onClick={importDvdLibrary}>
-          Import Home Theater Info
-        </button>
+        <div className='row'>
+          <div className='col-md-12'>
+            <p>
+              Quick Scan is powered by <a onClick={openHomeTheater}>Home Theater Info </a>
+              and gives you the ability to add your DVDS by simply scanning the barcode.
+            </p>
+            <button className='btn btn-primary' onClick={importDvdLibrary}>
+              Import Home Theater Info
+            </button>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='row'>&nbsp;</div>
+          <div className='col-md-12'>
+            <div id='hti-progress'>
+              <div id='hti-loading-bar'></div>
+            </div>
+            <div id='hti-loading-message'></div>
+          </div>
+        </div>
       </div>
       <form onSubmit={e => {
         e.preventDefault()

@@ -116,14 +116,18 @@ var bulk_insert = function(args){
 	var infos = args.map(function(doc){
 		return new HomeTheaterInfo(doc)
 	})
-	console.log('begin inserting...')
+  $('#hti-loading-bar').css('width', '80%')
+
 	db.insert(infos, function(err, newDocs){
-		console.log('completed inserting')
-		console.log(err)
-		console.log(newDocs)
-		console.log('Compacting datafile...')
+    //Step 7
 		db.persistence.compactDatafile()
     dialog.showMessageBox({type: 'info', message:"Import complete"})
+    $('#hti-loading-bar').css('width', '100%')
+    $('#hti-loading-message').html('Finishing...')
+    //Hide loading bar
+
+    $('#hti-progress').hide()
+    $('#hti-loading-message').html('')
 	})
 }
 
