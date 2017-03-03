@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { Displays } from '../actions'
-import { importDvdLibrary } from '../hometheaterinfo'
 import { exportCsv } from '../exportLibrary'
 
 const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeTheater }) => (
@@ -24,11 +23,6 @@ const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeThea
 			<li className="nav-closer" data-toggle="offcanvas">
 				<a href="#" onClick={changeToHomeTheater}>
 					Search Home Theater Database
-				</a>
-			</li>
-			<li className="nav-closer" data-toggle="offcanvas">
-				<a href="#" onClick={importDvdLibrary}>
-					Import Home Theater Info
 				</a>
 			</li>
 			<li className="nav-closer" data-toggle="offcanvas">

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addDvdFromHomeTheaterInfo } from '../actions'
 import VisibleAlerts from '../containers/VisibleAlerts'
+import { openHomeTheater } from '../OpenInBrowser'
 
 global.jQuery = global.$ = require('jquery')
 const bootstrap = require('bootstrap')
@@ -16,7 +17,12 @@ const QuickScanDvdComponent = ({dispatch, shouldDisplay, locations}) => {
         <div className='modal-content'>
           <div className='modal-header'>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 className="modal-title" id="quickScanModalLabel">Quick Scanner</h4>
+            <h4 className="modal-title" id="quickScanModalLabel">
+              Quick Scanner
+              <small>
+                <div>Powered by <a onClick={openHomeTheater}>Home Theater Info </a></div>
+              </small>
+            </h4>
           </div>
 
           <div className='modal-body'>
@@ -59,10 +65,12 @@ const QuickScanDvdComponent = ({dispatch, shouldDisplay, locations}) => {
 								Add DVD
 							</button>
 						</form>
+
+            <div className='row'>&nbsp;</div>
           </div>
 
 					<div className='modal-footer'>
-						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
         </div>
       </div>

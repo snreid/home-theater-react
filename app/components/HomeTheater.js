@@ -1,10 +1,21 @@
 import React, {PropTypes} from 'react'
 import HomeTheaterDvd from './HomeTheaterDvd'
+import { importDvdLibrary } from '../hometheaterinfo'
+import { openHomeTheater } from '../OpenInBrowser'
 
 const HomeTheater = ({ homeTheaterDvds, addDvd, searchHomeTheater }) =>{
   let search_node
   return(
     <div>
+      <div className='well'>
+        <p>
+          Quick Scan is powered by <a onClick={openHomeTheater}>Home Theater Info </a>
+          and gives you the ability to add your DVDS by simply scanning the barcode.
+        </p>
+        <button className='btn btn-primary' onClick={importDvdLibrary}>
+          Import Home Theater Info
+        </button>
+      </div>
       <form onSubmit={e => {
         e.preventDefault()
         if (!search_node.value.trim()) {
