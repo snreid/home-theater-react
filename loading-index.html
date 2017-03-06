@@ -8,23 +8,20 @@
     <title>Home Theater</title>
   </head>
   <body>
-		<div class='row'>
-			<div class='col-xs-6 text-right'>
-				<h2 id='loading-header'>Home Theater</h2>
-			</div>
-			<div class='col-xs-6'>
-				<div class='loader' id='loader'></div>
-				<br/>
-				<br/>
-				<div id='loader-message'>loading...</div>
-			</div>
-
-		</div>
+    <h2 id='loading-header'>Home Theater</h2>
+    <div class='loader' id='loader'></div>
+    <div id='loader-message'>Your library is loading...</div>
 
     <script type='text/javascript'>
-      const messages = ["Loading your library...", "Almost there...", "Awesomeness is coming..."]
-      //$('#loader-message').html(messages[datastoreDismissals])
-      //setTimeout(function(){ alert("Hello"); }, 3000);
+			var $ = require('jquery')
+      const messages = ["Awesomeness is coming..."]
+      let messageCounter = 0
+      setTimeout(function(){
+        if(messageCounter <= messages.length){
+          $('#loader-message').html(messages[messageCounter])
+          messageCounter++
+        }
+      }, 5000);
     </script>
   </body>
 </html>

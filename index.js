@@ -28,17 +28,7 @@ function createWindow () {
     slashes: true
   }))
 
-  let child = new BrowserWindow({
-    width: 500,
-    height: 300,
-    parent: mainWindow,
-    frame: false
-  })
-  child.loadURL(url.format({
-    pathname: path.join(__dirname, 'loading-index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  let child = loadingWindow()
 
   mainWindow.on('show', function(){
     child.close()
@@ -54,6 +44,21 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+}
+
+function loadingWindow(){
+  let child = new BrowserWindow({
+    width: 350,
+    height: 200,
+    parent: mainWindow,
+    frame: false
+  })
+  child.loadURL(url.format({
+    pathname: path.join(__dirname, 'loading-index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+  return child
 }
 
 // This method will be called when Electron has finished
