@@ -29,7 +29,7 @@ function createWindow () {
   }))
 
   let child = new BrowserWindow({
-    width: 400,
+    width: 500,
     height: 300,
     parent: mainWindow,
     frame: false
