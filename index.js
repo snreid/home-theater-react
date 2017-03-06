@@ -3,10 +3,7 @@ require('electron-reload')(__dirname);
 
 const electron = require('electron')
 const ipc = electron.ipcMain
-ipc.on('asynchronous-message', function(event,arg){
-  console.log('received message: ' + arg)
-  event.sender.send('asynchronous-reply', 'pong')
-})
+
 // Module to control application life.
 const app = electron.app
 
@@ -22,7 +19,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1100, height: 700})
+  mainWindow = new BrowserWindow({width: 1100, height: 700, show: false})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -30,6 +27,22 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
+
+  let child = new BrowserWindow({
+    width: 400,
+    height: 300,
+    parent: mainWindow,
+    frame: false
+  })
+  child.loadURL(url.format({
+    pathname: path.join(__dirname, 'loading-index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+
+  mainWindow.on('show', function(){
+    child.close()
+  })
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
