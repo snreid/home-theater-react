@@ -51,13 +51,17 @@ function loadingWindow(){
     width: 350,
     height: 200,
     parent: mainWindow,
-    frame: false
+    frame: false,
+    show: false
   })
   child.loadURL(url.format({
     pathname: path.join(__dirname, 'loading-index.html'),
     protocol: 'file:',
     slashes: true
   }))
+  child.once('ready-to-show', () => {
+    child.show()
+  })
   return child
 }
 

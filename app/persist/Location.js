@@ -30,6 +30,11 @@ class Location {
     })
   }
 
+  static purge(){
+		console.log("purging...")
+    db.remove({}, { multi: true })
+  }
+
 	static destroy(_id){
     return new Promise(function(resolve, reject){
       db.remove({_id: _id}, function(err, numDeleted){
@@ -58,6 +63,10 @@ class Location {
   }
 }
 
+var purge = function(){
+  Location.purge()
+}
+
 var all_locations = function(){
   return Location.find()
 }
@@ -71,4 +80,4 @@ var destroy_location = function(_id){
   return Location.destroy(_id)
 }
 
-export { all_locations, add_location, destroy_location }
+export { all_locations, add_location, destroy_location, purge }

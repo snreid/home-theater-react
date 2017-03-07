@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { Displays } from '../actions'
 import { exportCsv } from '../exportLibrary'
 
-const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeTheater }) => (
+const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeTheater, addMyLocations }) => (
   <div id="sidebar-wrapper" role="navigation" className="navbar navbar-inverse navbar-fixed-top">
     <ul className="nav sidebar-nav">
 			<li className="sidebar-brand">
@@ -16,11 +16,6 @@ const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeThea
 				</a>
 			</li>
 			<li className="nav-closer" data-toggle="offcanvas">
-				<a href="#" onClick={changeToLocations}>
-					Locations
-				</a>
-			</li>
-			<li className="nav-closer" data-toggle="offcanvas">
 				<a href="#" onClick={changeToHomeTheater}>
 					Search Home Theater Database
 				</a>
@@ -28,6 +23,16 @@ const Navigation = ({ display, changeToLocations, changeToDvds, changeToHomeThea
 			<li className="nav-closer" data-toggle="offcanvas">
 				<a href="#" onClick={exportCsv}>
 					Export Library (CSV)
+				</a>
+			</li>
+			<li className="nav-closer" data-toggle="offcanvas">
+				<a href="#" onClick={changeToLocations}>
+					Locations
+				</a>
+			</li>
+			<li className="nav-closer" data-toggle="offcanvas">
+				<a href="#" onClick={addMyLocations}>
+					Quick add my Locations
 				</a>
 			</li>
 
@@ -40,6 +45,7 @@ Navigation.propTypes = {
   changeToLocations: PropTypes.func.isRequired,
   changeToHomeTheater: PropTypes.func.isRequired,
   changeToDvds: PropTypes.func.isRequired,
+  addMyLocations: PropTypes.func.isRequired,
 }
 
 export default Navigation

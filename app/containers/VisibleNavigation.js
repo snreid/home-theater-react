@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
-import { changeDisplay, Displays } from '../actions'
+import { changeDisplay, Displays, refreshLocations } from '../actions'
 import Navigation from '../components/Navigation'
+import { addSreidsLocations } from '../sreidsLocations'
 
 const mapStateToProps = (state) => {
   return {
@@ -18,6 +19,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     changeToHomeTheater: () => {
       dispatch(changeDisplay(Displays.HOME_THEATER))
+    },
+    addMyLocations: () => {
+      addSreidsLocations().then(function(){
+        dispatch(refreshLocations())
+        dispatch(changeDisplay(Displays.LOCATIONS))
+      })
     },
   }
 }
