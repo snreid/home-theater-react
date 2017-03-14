@@ -18,15 +18,15 @@ const EditDvdComponent = ({ dispatch, dvd, locations }) => {
             <h4 className="modal-title" id="editDvdModalLabel">{`Editing ${dvd.DVD_Title}`}</h4>
           </div>
 
-          <div className='modal-body'>
-            <form onSubmit={e => {
-              e.preventDefault()
-              if (!title.value.trim()) {
-                return
-              }
-              var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value, notes: notes.value}
-              dispatch(updateDvd(dvd._id, params))
-            }}>
+          <form onSubmit={e => {
+            e.preventDefault()
+            if (!title.value.trim()) {
+              return
+            }
+            var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value, notes: notes.value}
+            dispatch(updateDvd(dvd._id, params))
+          }}>
+            <div className='modal-body'>
               <div className='form-group'>
                 <label>Title: </label>
                 <input className='form-control'
@@ -81,15 +81,15 @@ const EditDvdComponent = ({ dispatch, dvd, locations }) => {
                   />
                 </div>
               </div>
-              <button className="btn btn-success" type="submit">
+            </div>
+            <div className='modal-footer'>
+              <button type='button' className="btn btn-success" type="submit" data-dismiss='modal'>
                 Update DVD
               </button>
-            </form>
-          </div>
+              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </form>
 
-					<div className='modal-footer'>
-						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
         </div>
       </div>
     </div>
