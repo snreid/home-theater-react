@@ -36,7 +36,7 @@ class Dvd {
   static search(term, filters){
     return new Promise(function(resolve, reject){
       var regex = new RegExp(splitTerms(escapeRegExp(term)), 'ig')
-      db.find({ $where: function() {
+      db.find({$and: [filters, { $where: function() {
           var string = `${this.DVD_Title} ${this.Genre} ${this.notes} ${this.DVD_ReleaseDate} ${this.UPC}`
           var results = regex.exec(string)
           if (results == null){
@@ -46,7 +46,7 @@ class Dvd {
             return true
           }
         }
-      }).sort({DVD_Title: 1}).exec(function(err, docs){
+      }]}).sort({DVD_Title: 1}).exec(function(err, docs){
         if(err){
           reject(err)
         }
