@@ -17,16 +17,16 @@ let AddLocation = ({ dispatch }) => {
             <h4 className="modal-title" id="addLocationModalLabel">Add Location</h4>
           </div>
 
-          <div className='modal-body'>
-            <VisibleAlerts />
-            <form onSubmit={e => {
-              e.preventDefault()
-              if (!shelf.value.trim() || !row.value.trim() || !stack.value.trim()) {
-                return
-              }
-              var params = {shelf: shelf.value, stack: stack.value, row: row.value}
-              dispatch(addLocation(params))
-            }}>
+          <form onSubmit={e => {
+            e.preventDefault()
+            if (!shelf.value.trim() || !row.value.trim() || !stack.value.trim()) {
+              return
+            }
+            var params = {shelf: shelf.value, stack: stack.value, row: row.value}
+            dispatch(addLocation(params))
+          }}>
+            <div className='modal-body'>
+              <VisibleAlerts />
               <div className='form-group'>
                 <label>Shelf: </label>
                 <input className='form-control' ref={node => {
@@ -45,15 +45,15 @@ let AddLocation = ({ dispatch }) => {
                   stack = node
                 }} />
               </div>
+            </div>
+            <div className='modal-footer'>
               <button className="btn btn-success" type="submit">
                 Add Location
               </button>
-            </form>
-          </div>
+              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </form>
 
-					<div className='modal-footer'>
-						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
         </div>
       </div>
     </div>

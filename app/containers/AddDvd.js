@@ -28,20 +28,20 @@ class AddDvdComponent extends React.Component{
             <h4 className="modal-title" id="addDvdModalLabel">Add DVD</h4>
           </div>
 
-          <div className='modal-body'>
-            <VisibleAlerts />
-            <form onSubmit={e => {
-              e.preventDefault()
-              if (!title.value.trim()) {
-                return
-              }
-              var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value, notes: notes.value}
-              this.props.dispatch(addDvd(params))
-              title.value = ''
-              date.value = ''
-              genre.value = ''
-              notes.value = ''
-            }}>
+          <form onSubmit={e => {
+            e.preventDefault()
+            if (!title.value.trim()) {
+              return
+            }
+            var params = {DVD_Title: title.value, DVD_ReleaseDate: date.value, Genre: genre.value, location_id: location_node.value, notes: notes.value}
+            this.props.dispatch(addDvd(params))
+            title.value = ''
+            date.value = ''
+            genre.value = ''
+            notes.value = ''
+          }}>
+            <div className='modal-body'>
+              <VisibleAlerts />
               <div className='form-group'>
                 <label>Title: </label>
                 <input className='form-control' ref={node => {
@@ -81,15 +81,15 @@ class AddDvdComponent extends React.Component{
                   }} />
                 </div>
               </div>
+            </div>
+            <div className='modal-footer'>
               <button className="btn btn-success" type="submit">
                 Add DVD
               </button>
-            </form>
-          </div>
+              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </form>
 
-					<div className='modal-footer'>
-						<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
         </div>
       </div>
     </div>

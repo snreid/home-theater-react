@@ -25,17 +25,17 @@ const QuickScanDvdComponent = ({dispatch, shouldDisplay, locations}) => {
             </h4>
           </div>
 
-          <div className='modal-body'>
-            <VisibleAlerts />
-						<form onSubmit={e => {
-							e.preventDefault()
-							if (!upc_node.value.trim()) {
-								return
-							}
-							var params = {UPC: upc_node.value, location_id: location_node.value}
-							dispatch(addDvdFromHomeTheaterInfo(params))
-							upc_node.value = ''
-						}}>
+          <form onSubmit={e => {
+            e.preventDefault()
+            if (!upc_node.value.trim()) {
+              return
+            }
+            var params = {UPC: upc_node.value, location_id: location_node.value}
+            dispatch(addDvdFromHomeTheaterInfo(params))
+            upc_node.value = ''
+          }}>
+            <div className='modal-body'>
+              <VisibleAlerts />
 							<div className='form-group'>
 								<label>UPC: </label>
 								<input className='form-control'
@@ -61,17 +61,16 @@ const QuickScanDvdComponent = ({dispatch, shouldDisplay, locations}) => {
 									)}
 								</select>
 							</div>
+            <div className='modal-footer'>
 							<button className="btn btn-success" type="submit">
 								Add DVD
 							</button>
-						</form>
+              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
 
-            <div className='row'>&nbsp;</div>
-          </div>
+            </div>
+          </form>
 
-					<div className='modal-footer'>
-            <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
         </div>
       </div>
     </div>
