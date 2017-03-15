@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addDvdFromHomeTheaterInfo } from '../actions'
-import VisibleAlerts from '../containers/VisibleAlerts'
+import VisibleModalAlerts from '../containers/VisibleModalAlerts'
 import { openHomeTheater } from '../OpenInBrowser'
 
 global.jQuery = global.$ = require('jquery')
@@ -35,7 +35,7 @@ const QuickScanDvdComponent = ({dispatch, shouldDisplay, locations}) => {
             upc_node.value = ''
           }}>
             <div className='modal-body'>
-              <VisibleAlerts />
+              <VisibleModalAlerts />
 							<div className='form-group'>
 								<label>UPC: </label>
 								<input className='form-control'

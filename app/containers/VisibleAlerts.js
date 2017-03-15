@@ -5,7 +5,7 @@ import AlertList from '../components/AlertList'
 
 const mapStateToProps = (state) => {
   return {
-    alerts: state.alerts
+    alerts: state.mainWindowAlerts
   }
 }
 

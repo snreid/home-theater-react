@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addDvd } from '../actions'
-import VisibleAlerts from '../containers/VisibleAlerts'
+import VisibleModalAlerts from '../containers/VisibleModalAlerts'
 
 global.jQuery = global.$ = require('jquery')
 const bootstrap = require('bootstrap')
@@ -41,7 +41,7 @@ class AddDvdComponent extends React.Component{
             notes.value = ''
           }}>
             <div className='modal-body'>
-              <VisibleAlerts />
+              <VisibleModalAlerts />
               <div className='form-group'>
                 <label>Title: </label>
                 <input className='form-control' ref={node => {

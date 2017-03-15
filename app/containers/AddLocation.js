@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addLocation } from '../actions'
-import VisibleAlerts from '../containers/VisibleAlerts'
+import VisibleModalAlerts from '../containers/VisibleModalAlerts'
 
 let AddLocation = ({ dispatch }) => {
   let row
@@ -26,7 +26,7 @@ let AddLocation = ({ dispatch }) => {
             dispatch(addLocation(params))
           }}>
             <div className='modal-body'>
-              <VisibleAlerts />
+              <VisibleModalAlerts />
               <div className='form-group'>
                 <label>Shelf: </label>
                 <input className='form-control' ref={node => {

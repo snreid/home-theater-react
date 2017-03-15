@@ -8,6 +8,7 @@ import { REFRESHED_LOCATIONS,
          ADD_DVD_ALERT,
          ADD_LOCATION_ALERT,
          ADD_QUICK_SCAN_ALERT,
+         ADD_MAIN_ALERT,
          REMOVE_ALERT,
          Alerts,
          Displays } from './actions'
@@ -106,6 +107,20 @@ function alerts(state = [], action) {
   }
 }
 
+function mainWindowAlerts(state = [], action){
+  switch(action.type){
+    case ADD_MAIN_ALERT:
+      return [
+        ...state,
+        action.alert
+      ]
+    case REMOVE_ALERT:
+      return state.filter(alert => alert.id != action.alert_id)
+    default:
+      return state
+  }
+}
+
 const dvdApp = combineReducers({
   display,
   homeTheaterDvds,
@@ -114,6 +129,7 @@ const dvdApp = combineReducers({
   editingDvd,
   displayingDvd,
   alerts,
+  mainWindowAlerts,
 })
 
 export default dvdApp

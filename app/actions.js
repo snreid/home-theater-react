@@ -11,6 +11,7 @@ export const REFRESHED_DVDS = 'REFRESHED_DVDS'
 export const ADD_DVD_ALERT= 'ADD_DVD_ALERT'
 export const ADD_LOCATION_ALERT = 'ADD_LOCATION_ALERT'
 export const ADD_QUICK_SCAN_ALERT = 'ADD_QUICK_SCAN_ALERT'
+export const ADD_MAIN_ALERT = 'ADD_MAIN_ALERT'
 export const REMOVE_ALERT = 'REMOVE_ALERT'
 export const REFRESHED_HOME_THEATER = 'REFRESHED_HOME_THEATER'
 
@@ -107,7 +108,7 @@ export function deleteDvd(dvd_id){
   return function(dispatch){
     return destroy_dvd(dvd_id).then(function(dvd){
       dispatch(refreshDvds())
-      dispatch(addDVDSuccessAlert('Removed from library'))
+      dispatch(addMainWindowAlert('Removed from library'))
     })
   }
 }
@@ -117,7 +118,7 @@ export function updateDvd(dvd_id, params){
     return update_dvd(dvd_id, params).then(function(dvd){
       dispatch(refreshDvds())
       dispatch(displayDvd(dvd_id))
-      dispatch(addDVDSuccessAlert(`"${params.DVD_Title}" successfully updated`))
+      dispatch(addMainWindowAlert(`"${params.DVD_Title}" successfully updated`))
     })
   }
 }
@@ -233,6 +234,13 @@ export function addQuickScanFailureAlert(message){
   }
 }
 
+export function addMainWindowAlert(message){
+  return{
+    type: ADD_MAIN_ALERT,
+    alert: createAlert(message, 'success')
+  }
+}
+
 export function removeAlert(alert_id){
   return{
     type: REMOVE_ALERT,
@@ -242,6 +250,6 @@ export function removeAlert(alert_id){
 
 let nextAlertId = 0
 
-function createAlert(message, level, type){
+function createAlert(message, level, type = null){
   return { message: message, type: type, level: level, id: (nextAlertId++).toString() }
 }
