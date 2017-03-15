@@ -83,7 +83,7 @@ const EditDvdComponent = ({ dispatch, dvd, locations }) => {
               </div>
             </div>
             <div className='modal-footer'>
-              <button type='button' className="btn btn-success" type="submit" data-dismiss='modal'>
+              <button className="btn btn-success" type="submit">
                 Update DVD
               </button>
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
