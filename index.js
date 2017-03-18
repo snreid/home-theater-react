@@ -1,5 +1,5 @@
 global.jQuery = global.$ = require('jQuery')
-require('electron-reload')(__dirname);
+//require('electron-reload')(__dirname);
 
 const electron = require('electron')
 const ipc = electron.ipcMain
@@ -35,7 +35,7 @@ function createWindow () {
   })
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
