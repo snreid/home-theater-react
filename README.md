@@ -5,9 +5,9 @@ A small app to keep track of our DVDs; this time built in React!
 
 Successful Tutorial: https://www.christianengvall.se/electron-packager-tutorial/
 
-For mac you need an ICNS file
-For windows you need and ICO file
-For everything else (linux) you need a PNG
+* For mac you need an ICNS file
+* For windows you need and ICO file
+* For everything else (linux) you need a PNG
 
 Add an "icon: path.join(__dirname, '/file.[ico|icns|png]’)” to your main BrowserWindow.
 
